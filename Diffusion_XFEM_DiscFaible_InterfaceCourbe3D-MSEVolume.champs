@@ -1,0 +1,179 @@
+#Creation des entites intervenant dans le calcul et définies sur le MSE
+cree_entite EntiteMSEPlus
+cree_entite EntiteMSEMoins
+ 
+
+#On remplit les entites vides des bons éléments
+pp_creemsedecoupageparlevelset     pp_cree_mse [levelset,EntiteOmega_Gamma,EntiteGamma,EntiteMSEPlus,EntiteMSEMoins]
+
+#PP permettant de calculer le champ kappa selon sa définition dans Hansbo
+scalconstelem champ_k 0
+pp_champ_k_xfem pp_champ_k [champ_k, EntiteMSEPlus, EntiteMSEMoins]
+
+champ_xfem_partie_enrichie u_xfem_plus   [u_partie_enrichie, Heaviside, EntiteMSEPlus]
+champ_xfem_partie_enrichie u_xfem_moins  [u_partie_enrichie, UnMoinsHeaviside, EntiteMSEMoins]
+
+// uniquement utile pour la visualisation
+scallinelem u_xfem_moins_disc 0
+scallinelem u_xfem_plus_disc  0
+scallinelem u_disc 0
+
+#Definition de fonctions scalaires intervenants dans le calcul
+#scalaire Gamma 4500
+scalaire MoinsGamma f(Gamma)=-Gamma
+
+scalaire Alpha1Km f(alpha1,champ_k)=alpha1*champ_k
+scalaire MoinsAlpha1Km f(alpha1,champ_k)=-alpha1*champ_k
+scalaire Alpha2Kp f(alpha2,champ_k)=alpha2*champ_k
+scalaire MoinsAlpha2Kp f(alpha2,champ_k)=-alpha2*champ_k
+
+
+scalaire gn f(champ_k,Gn)=Gn*champ_k
+#scalaire gn f(champ_k,Gn)=Gn*(1-champ_k)
+
+#scalaire MoinsAlpha1KmGd f(Alpha1Km,Gd)=-Alpha1Km*Gd
+#scalaire MoinsAlpha2KpGd f(Alpha2Kp,Gd)=-Alpha2Kp*Gd
+#scalaire GammaGd f(Gamma,Gd)=Gamma*Gd
+#scalaire MoinsGammaGd f(GammaGd)=-GammaGd
+
+#scalaire F1x f(nx,MoinsAlpha1KmGd)=nx*MoinsAlpha1KmGd
+#scalaire F1y f(ny,MoinsAlpha1KmGd)=ny*MoinsAlpha1KmGd
+#scalaire F2x f(nx,MoinsAlpha2KpGd)=nx*MoinsAlpha2KpGd
+#scalaire F2y f(ny,MoinsAlpha2KpGd)=ny*MoinsAlpha2KpGd
+
+#empilementv3d F1  [F1x, F1y, Zero]
+#empilementv3d F2  [F2x, F2y, Zero]
+
+#creation de champ necessaire au calcul de lerreur de xfem_plus et x_fem_moins
+scalaire erreurp f(uAna,u,u_xfem_plus)=abs(uAna-u-u_xfem_plus)
+scalaire erreurm f(uAna,u,u_xfem_moins,u_xfem_plus)=abs(uAna-u-u_xfem_moins)
+scalaire erreurGamma f(erreurp,erreurm)=erreurp+erreurm
+scalaire NL2_MSEPlus         -1
+scalaire SNH1_MSEPlus        -1
+scalaire NL2_MSEMoins        -1
+scalaire SNH1_MSEMoins       -1
+
+#pp afin de calculer l'erreur sur mse_plus et mse_moins
+pp_norme_l2 pp_norme_l2_mse_p [erreurp,NL2_MSEPlus,SNH1_MSEPlus,schema_intg,  EntiteMSEPlus]
+pp_norme_l2 pp_norme_l2_mse_m [erreurm,NL2_MSEMoins,SNH1_MSEMoins,schema_intg,EntiteMSEMoins]
+
+#creation de scalaire calculant l'erreur sur le domaine complet
+scalaire NL2_Omega f(NL2_MSEPlus,NL2_MSEMoins,NL2_OmegaSansGamma)=sqrt(NL2_MSEPlus^2+NL2_MSEMoins^2+NL2_OmegaSansGamma^2)
+scalaire SNH1_Omega f(SNH1_MSEPlus,SNH1_MSEMoins,SNH1_OmegaSansGamma)=sqrt(SNH1_MSEPlus^2+SNH1_MSEMoins^2+SNH1_OmegaSansGamma^2)
+
+{ ProbEFGlobal
+
+  # Termes de diffusion pour la partie standard
+  tfdiffusion   Diff_us_vs_plus [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+  tfdiffusion   Diff_us_vs_moins [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+  
+  # Termes de diffusion pour la partie enrichie (6 au total)
+  tfdiffusion   Diff_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+  tfdiffusion   Diff_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+  tfdiffusion   Diff_uhp_vs  [champgeo, u_xfem_plus, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+  tfdiffusion   Diff_us_vhp  [champgeo, u, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+  tfdiffusion   Diff_uhm_vs  [champgeo, u_xfem_moins, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+  tfdiffusion   Diff_us_vhm  [champgeo, u, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+
+  # Termes sources
+  tfsourcefvscal TFSource_uhp  [champgeo,F,u_xfem_plus,schema_intg, defaut::EntiteMSEPlus]
+  tfsourcefvscal TFSource_us_plus  [champgeo,F,u,schema_intg, defaut::EntiteMSEPlus]
+  tfsourcefvscal TFSource_uhm  [champgeo,F,u_xfem_moins,schema_intg, defaut::EntiteMSEMoins]
+  tfsourcefvscal TFSource_us_moins  [champgeo,F,u,schema_intg, defaut::EntiteMSEMoins]
+  
+  # Termes sources pour la discontinuite faible
+  tfsourcefvscal_frontiere TFSource_vsk1gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  tfsourcefvscal_frontiere TFSource_vsk2gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  tfsourcefvscal_frontiere TFSource_vhmgn [champgeo, gn, u_xfem_moins, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  tfsourcefvscal_frontiere TFSource_vhpgn [champgeo, gn, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  
+  # Termes sources pour la discontinuite forte
+  #tfsourcefdotgradv_frontiere TFSource_vsgdm [champgeo, F1, u,schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  #tfsourcefdotgradv_frontiere TFSource_vsgdp [champgeo, F2, u,schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  #tfsourcefdotgradv_frontiere TFSource_vhmk1gd [champgeo, F1, u_xfem_moins,schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  #tfsourcefdotgradv_frontiere TFSource_vhpk2gd [champgeo, F2, u_xfem_plus,schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  #tfsourcefvscal_frontiere TFSource_vhmgammagd [champgeo, GammaGd, u_xfem_moins, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  #tfsourcefvscal_frontiere TFSource_vhpgammagd [champgeo, MoinsGammaGd, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  
+  # Termes de formulation pour le recollement
+  # termes de masses (uh,vh)
+  tfmassegenscal Masse_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, Gamma, schema_intg, defaut::EntiteGamma]
+  tfmassegenscal Masse_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, Gamma, schema_intg, defaut::EntiteGamma]
+  tfmassegenscal Masse_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, MoinsGamma, schema_intg, defaut::EntiteGamma]
+  tfmassegenscal Masse_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, MoinsGamma, schema_intg, defaut::EntiteGamma]
+  
+  # termes de convection (uh,vh)
+  tftransportconvectifscalairefrontiere Conv_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  tftransportconvectifscalairefrontiere Conv_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus] 
+  tftransportconvectifscalairefrontiere Conv_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]  
+  tftransportconvectifscalairefrontiere Conv_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  tftransportconvectifscalairetestfrontiere Convt_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  tftransportconvectifscalairetestfrontiere Convt_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  tftransportconvectifscalairetestfrontiere Convt_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  tftransportconvectifscalairetestfrontiere Convt_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+
+  # termes de convection (us,vh)
+  tftransportconvectifscalairefrontiere Conv_us_vhm [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  tftransportconvectifscalairefrontiere Conv_us_vhm2 [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  tftransportconvectifscalairefrontiere Conv_us_vhp [champgeo, u, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  tftransportconvectifscalairefrontiere Conv_us_vhp2 [champgeo, u, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+
+  # termes de convection (uh,vs)
+  tftransportconvectifscalairetestfrontiere Conv_uhm_vs [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+  tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+  tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+}
+
+# Création d'exportations:
+{ exportation            MSE
+   format_exportation     VTK
+   asgnDegreInterpolation Exportation::eMAILLAGE_QUADRATIQUE
+   ajouteChamp                u_partie_enrichie
+   ajouteChamp                uAna
+   ajouteChamp                erreurp
+   ajouteChamp                erreurm
+   ajouteChamp                erreurGamma
+   #ajouteChamp               ks
+   ajouteChamp                champ_k
+   ajouteChamp                Heaviside
+   ajouteChamp                UnMoinsHeaviside
+   #ajouteChamp               normale_levelset
+   ajouteChampCommeAutreChamp u u_disc
+   ajouteChampCommeAutreChamp u_xfem_moins u_xfem_moins_disc
+   ajouteChampCommeAutreChamp u_xfem_plus u_xfem_plus_disc
+
+   # Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):
+   prefixe_sorties            $CheminAccesExport$/resultats-VolumeMSE
+}
+
+{ exportation            Norme_L2_Omega
+  format_exportation     GIREF
+  format_exportation     VTK
+  ajouteDReel            NL2_MSEPlus
+  ajouteDReel            NL2_MSEMoins
+  ajouteDReel            NL2_OmegaSansGamma
+  ajouteDReel            SNH1_MSEPlus
+  ajouteDReel            SNH1_MSEMoins
+  ajouteDReel            SNH1_OmegaSansGamma
+  ajouteChamp            NL2_Omega
+  ajouteChamp            SNH1_Omega
+# Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):
+  prefixe_sorties       $CheminAccesExport$/resultats-Erreur
+}
+
+pp_exportation pp_exporte_mse [MSE]
+pp_exportation pp_exporte_nl2_omega [Norme_L2_Omega]
+
+{ Actions
+  execute pp_cree_mse
+  execute pp_optEnt
+  
+  execute pp_champ_k
+  resoud  Solveur(ProbEFGlobal)
+  execute pp_norme_l2_omega_sans_gamma
+  execute pp_norme_l2_mse_p
+  execute pp_norme_l2_mse_m
+  execute pp_exporte_mse
+  execute pp_exporte_nl2_omega
+}

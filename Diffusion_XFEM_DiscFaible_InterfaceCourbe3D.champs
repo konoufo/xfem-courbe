@@ -1,0 +1,163 @@
+#booleen GIREF_AJOUTE_PILE_APPEL_ERMSG true
+booleen GIREF_VERBOSE_SOLVEUR false
+
+# On déclare un problème EF que l'on renseignera et que l'on nomme ProbEFGlobal:
+# On désire aussi éliminer tout DDL qui n'est pas inconnu du système.
+problemeef ProbEFGlobal
+
+# Définition du champ de transformation géométrique utilisé pour le calcul:
+champgeolin champgeo
+#champgeoquad champgeo
+#Creation des entites intervenant dans le calcul et définies sur le maillage complet
+
+cree_entite EntiteOmega_Gamma
+cree_entite EntiteOmegaSansGamma
+cree_entite EntiteGamma
+
+# Parametre de Nitsche en fonction de taille de maillage (calcul de convergence)
+scalaire hAnaConv 0.00390625
+scalaire Gamma f(hAnaConv)=4500/hAnaConv
+
+#Creation de champ scalaire intervant dans notre calcul
+scalaire alpha1 1
+scalaire alpha2 2
+
+#On definit l'interface
+#scalaire r0 0.3331
+scalaire r0 0.4441
+#scalaire r0 0.02441
+scalaire c0 0
+#scalaire c0 -0.375
+scalaire r f(c0)=sqrt((x-c0)^2+(y-c0)^2+(z-c0)^2)
+#scalaire r sqrt(x^2+y^2+z^2)
+scalaire levelsetAna f(r,r0) = r^2-r0^2
+#scalquad levelset reinterpole(levelsetAna)
+#scallin levelset reinterpole(levelsetAna)
+alias levelset=levelsetAna
+# La normale sortante a la levelset
+scalaire "nx" f(r,c0)=(x-c0)/r
+scalaire "ny" f(r,c0)=(y-c0)/r
+scalaire "nz" f(r,c0)=(z-c0)/r
+
+empilementv3d "normale_levelset" [nx,ny,nz]
+
+#Définition du champ Heveaside
+scalaire Heaviside f(levelset)=if(levelset>=0,1,0)
+scalaire UnMoinsHeaviside f(Heaviside)=1-Heaviside
+
+# Définition/création d'un champ scalaire linéaire. Ce champ sera utilisé comme
+# l'inconnu dans le calcul :
+scalquad u 0
+#scallin u 0
+
+scalaire uAna f()=x
+#scalaire uAna f(r,r0,levelset,alpha1,alpha2)=if(levelset<=0,r^2/alpha1,(r^2/alpha2-r0^2/alpha2 + r0^2/alpha1))
+#scalaire "h" f(alpha1,alpha2,r,r0)=if(r<r0, 1/alpha1,1/alpha2+(1/alpha1-1/alpha2)*exp(r^2-r0^2))
+#scalaire "uAna" f(r,h)=x*h*exp(-r^2)
+
+# Le champ F: terme source
+#scalaire F f(r)=-2*x*exp(-r^2)*(2*r^2-5)
+scalaire F 0
+#scalaire "F" f(r)=-6
+
+# On definit la discontinuite faible imposee (au niveau de la levelset)
+#scalaire Gn f(nx,alpha1,alpha2,r0)=(1-alpha2/alpha1)*exp(-r0^2)*nx
+scalaire Gn f(nx,alpha1,alpha2)=(alpha1-alpha2)*nx
+#scalaire Gn 0
+
+# On definit la discontinuite forte imposee (au niveau de la levelset)
+#scalaire Gd f(alpha1)=x/alpha1
+
+#Creation de champs necessaires au calcul de l'erreur sur OmegaSansGamma
+scalaire erreurUs f(uAna,u)=abs(uAna-u)
+scalaire NL2_OmegaSansGamma  -1
+scalaire SNH1_OmegaSansGamma -1
+
+
+# champ permettant de dédoubler les degrés de libertés pour la création du champ XFEM dans le MSE-Volume
+#scallin u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
+scalquad u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
+
+scalaire ks f(levelset,alpha1,alpha2)=if(levelset<0,alpha1,alpha2)
+empilementto2 alpha [ks,ks,ks,Zero,Zero,Zero]
+
+# Paramètres qui serviront à créer un schéma d'intégration:
+{ ParamSchema
+    scalaire ptintgarete               7
+    scalaire ptintgface3               16
+    scalaire ptintgface4               3
+    scalaire ptintgelement1d           7
+    scalaire ptintgtriangle            16
+    scalaire ptintgquadrangle          3
+    scalaire ptintgtetra               15
+    scalaire ptintgprismetri_legendre  3
+    scalaire ptintgprismetri_triangle  7
+    scalaire ptintghexa                3
+}
+
+# Création d'un schéma d'intégration selon les paramètres
+# du "namespace" ParamSchema
+schemaintg schema_intg ParamSchema
+
+# Création d'option PETSc qui serviront à définir un solveur (ksp, pc et mat):
+{ options_prefixees_petsc o_slin
+  ksp_type preonly
+  pc_factor_mat_solver_type petsc
+  pc_factor_mat_solver_package petsc
+  ksp_view
+}
+
+solveur_lin_petsc prefixe_options slin o_slin
+
+# Création du solveur *non-linéaire* en spécifiant
+# le solveur linéaire à utiliser:
+solveur_nlin_petsc solveur_lin Solveur(ProbEFGlobal) slin
+
+#On crée un critère de convergence en norme infinie:
+ccninfcorr CCNInf_T [1e-9,1e30,Solveur(ProbEFGlobal)]
+
+{ ProbEFGlobal
+  tfdiffusion   Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
+  tfsourcefvscal TFSource  [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
+  
+
+  #Les CLs:
+  dirichlet scalaire "xm" "u" "uAna"
+  dirichlet scalaire "xp" "u" "uAna"
+  dirichlet scalaire "ym" "u" "uAna"
+  dirichlet scalaire "yp" "u" "uAna"
+  dirichlet scalaire "zm" "u" "uAna"
+  dirichlet scalaire "zp" "u" "uAna"
+}
+
+# Création d'exportations:
+{ exportation            ProbEFGlobal
+  # format_exportation     GIREF
+   format_exportation     VTK
+   asgnDegreInterpolation Exportation::eMAILLAGE_QUADRATIQUE
+   ajouteChamp           u
+   ajouteChamp           uAna
+   ajouteChamp           erreurUs
+   # Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):
+   prefixe_sorties      $CheminAccesExport$/resultats
+}
+
+#-----------------
+# Section pour la peau du corps:
+#-----------------
+{ corps
+  chainecar nom_entite_creant_MSEVolume      EntiteOmega_Gamma
+}
+
+#pp afin de calculer le complement de Omega_Gamma
+pp_operationsurentite pp_optEnt [complement,EntiteOmegaSansGamma,EntiteOmega_Gamma]
+
+#pp afin d'exporter le maillage
+#pp_exportation pp_exporte_maillage [ProbEFGlobal]
+
+#pp afin de calculer la norme l2 sur OmegaSansGamma
+pp_norme_l2 pp_norme_l2_omega_sans_gamma [erreurUs,NL2_OmegaSansGamma,SNH1_OmegaSansGamma,schema_intg,EntiteOmegaSansGamma]
+
+#{ Actions
+#  execute pp_exporte_maillage
+#}
