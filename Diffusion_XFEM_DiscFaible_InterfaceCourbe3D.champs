@@ -24,10 +24,10 @@ scalaire alpha2 2
 
 #On definit l'interface
 #scalaire r0 0.3331
-scalaire r0 0.4441
-#scalaire r0 0.02441
-scalaire c0 0
-#scalaire c0 -0.375
+#scalaire r0 0.4441
+scalaire r0 0.04
+#scalaire c0 0
+scalaire c0 -0.375
 scalaire r f(c0)=sqrt((x-c0)^2+(y-c0)^2+(z-c0)^2)
 #scalaire r sqrt(x^2+y^2+z^2)
 scalaire levelsetAna f(r,r0) = r^2-r0^2
