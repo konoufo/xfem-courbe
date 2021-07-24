@@ -1,0 +1,38 @@
+
+cree_entite EntiteGamma
+cree_entite EntiteMSEPlus
+cree_entite EntiteMSEMoins
+
+pp_creemsedecoupageparlevelset     pp_cree_mse [levelset,EntiteOmega_Gamma,EntiteGamma,EntiteMSEPlus,EntiteMSEMoins]
+
+
+scalaire volume_EntiteMSEMoins 0
+scalaire volume_EntiteMSEPlus  0
+scalaire aire_EntiteGamma    0
+
+pp_calcul_integrale_champ_scalaire pp_int_VolumeEntiteMSEMoins [Un,EntiteMSEMoins,schema_intg,volume_EntiteMSEMoins]
+pp_calcul_integrale_champ_scalaire pp_int_VolumeEntiteMSEPlus  [Un,EntiteMSEPlus, schema_intg,volume_EntiteMSEPlus]
+pp_calcul_integrale_champ_scalaire pp_int_AireEntiteGamma    [Un,EntiteGamma,   schema_intg,aire_EntiteGamma]
+
+# Création d'exportations:
+{ exportation            MSE
+  # format_exportation     GIREF
+  # format_exportation     VTK
+   asgnDegreInterpolation Exportation::eMAILLAGE_QUADRATIQUE
+   ajouteDReel volume_EntiteOmega_Gamma
+   ajouteDReel volume_EntiteMSEMoins
+   ajouteDReel volume_EntiteMSEPlus
+   ajouteDReel aire_EntiteGamma
+   # Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):
+   prefixe_sorties $CheminAccesExport$/resultats-VolumeMSE
+    
+}
+pp_exportation pp_exporte_mse [MSE]
+
+{ Actions
+  execute pp_cree_mse
+  #execute pp_int_AireEntiteGamma
+  #execute pp_int_volumeEntiteOmega_Gamma
+  #execute pp_int_VolumeEntiteMSEMoins
+  #execute pp_int_VolumeEntiteMSEPlus
+}

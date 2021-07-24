@@ -1,0 +1,101 @@
+booleen GIREF_AJOUTE_PILE_APPEL_ERMSG true
+booleen GIREF_VERBOSE_SOLVEUR false
+ 
+# On déclare un problème EF que l'on renseignera et que l'on nomme ProbEFGlobal:
+# On désire aussi éliminer tout DDL qui n'est pas inconnu du système.
+problemeef ProbEFGlobal [tout]
+
+# Définition du champ de transformation géométrique utilisé pour le calcul:
+champgeoquad champgeo
+#champgeolin champgeo
+
+cree_entite EntiteOmega_Gamma
+
+# Définition/création d'un champ scalaire linéaire avec comme 
+# valeur initiale 0.  Ce champ sera utilisé comme l'inconnu dans 
+# le calcul :
+scallin "u" x 
+
+# Paramètres qui serviront à créer un schéma d'intégration:
+{ ParamSchema
+    scalaire ptintgarete               3
+    scalaire ptintgface3               7
+    scalaire ptintgface4               3
+    scalaire ptintgelement1d           3
+    scalaire ptintgtriangle            7
+    scalaire ptintgquadrangle          3
+    scalaire ptintgtetra               15
+    scalaire ptintgprismetri_legendre  3
+    scalaire ptintgprismetri_triangle  7
+    scalaire ptintghexa                3
+}
+
+# Création d'un schéma d'intégration selon les paramètres
+# du "namespace" ParamSchema
+schemaintg schema_intg ParamSchema
+
+# Création d'option PETSc qui serviront à définir un solveur (ksp, pc et mat):
+{options_prefixees_petsc o_slin
+  ksp_type preonly
+  #ksp_type gmres
+  ksp_atol 1e-20
+  ksp_rtol 1e-12
+  ksp_divtol 1e30
+  ksp_max_it 4000
+#  ksp_monitor
+# ksp_view
+#  pc_type cholesky
+}
+
+solveur_lin_petsc prefixe_options slin o_slin
+
+# Création du solveur *non-linéaire* en spécifiant
+# le solveur linéaire à utiliser:
+solveur_nlin_petsc solveur_lin Solveur(ProbEFGlobal) slin
+
+
+#On crée un critère de convergence en norme infinie:
+ccninfcorr CCNInf_T [1e-6,1e30,Solveur(ProbEFGlobal)]
+
+# Définition d'une levelset
+scalaire xc 1
+scalaire yc 0
+scalaire zc 0 
+
+scalaire r f(xc,yc,zc)=sqrt((x-xc)^2+(y-yc)^2+(z-zc)^2)
+scalaire r0 0.5
+scalaire levelset f(r,r0)=r^2-r0^2 
+
+{ ProbEFGlobal
+ 
+}
+
+# Création d'exportations:
+{ exportation            ProbEFGlobal
+  # format_exportation     GIREF
+   format_exportation     VTK
+   asgnDegreInterpolation Exportation::eMAILLAGE_LINEAIRE
+   ajouteChamp u
+   # Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):
+   prefixe_sorties $CheminAccesExport$/resultats
+   
+}
+
+
+#-----------------
+# Section pour la peau du corps:
+#-----------------
+{ corps
+  chainecar nom_entite_creant_MSEVolume      EntiteOmega_Gamma
+}
+
+scalaire volume_EntiteOmega_Gamma 0
+pp_calcul_integrale_champ_scalaire pp_int_volumeEntiteOmega_Gamma [Un,EntiteOmega_Gamma,schema_intg,volume_EntiteOmega_Gamma]
+
+
+pp_exportation pp_exporte_maillage [ProbEFGlobal]
+
+{ Actions
+#execute pp_exporte_maillage
+}
+
