@@ -58,12 +58,12 @@ solveur_nlin_petsc solveur_lin Solveur(ProbEFGlobal) slin
 ccninfcorr CCNInf_T [1e-6,1e30,Solveur(ProbEFGlobal)]
 
 # Définition d'une levelset
-scalaire xc 1
-scalaire yc 0
-scalaire zc 0 
+scalaire xc -.375
+scalaire yc -.375
+scalaire zc -.375
 
 scalaire r f(xc,yc,zc)=sqrt((x-xc)^2+(y-yc)^2+(z-zc)^2)
-scalaire r0 0.5
+scalaire r0 0.02664
 scalaire levelset f(r,r0)=r^2-r0^2 
 
 { ProbEFGlobal
