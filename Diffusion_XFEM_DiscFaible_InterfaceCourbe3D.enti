@@ -1,1 +1,68 @@
-../cube64-h128.enti
+22 ListEntitesGeometrique
+11 Version 1.0
+13 17 EntiteGeometrique
+11 Version 3.0
+8 Elements
+22 Mode=eModeUtiliseLieux
+27 0 0 0 0 0 0 0 0 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+2 xm
+22 Mode=eModeUtiliseLieux
+9 0 0 0 0 0 0 0 0 5 9 14 15 18 19 21 23 26 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+4 xmSC
+22 Mode=eModeUtiliseLieux
+1 0 0 0 0 0 0 0 0 5 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+2 xp
+22 Mode=eModeUtiliseLieux
+9 0 0 0 0 0 0 0 0 3 10 12 16 17 20 22 24 25 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+4 xpSC
+22 Mode=eModeUtiliseLieux
+1 0 0 0 0 0 0 0 0 3 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+2 ym
+22 Mode=eModeUtiliseLieux
+9 0 0 0 0 0 0 0 0 2 7 11 15 16 19 20 23 24 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+4 ymSC
+22 Mode=eModeUtiliseLieux
+1 0 0 0 0 0 0 0 0 2 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+2 yp
+22 Mode=eModeUtiliseLieux
+9 0 0 0 0 0 0 0 0 4 8 13 17 18 21 22 25 26 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+4 ypSC
+22 Mode=eModeUtiliseLieux
+1 0 0 0 0 0 0 0 0 4 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+2 zm
+22 Mode=eModeUtiliseLieux
+9 0 0 0 0 0 0 0 0 1 7 8 9 10 19 20 21 22 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+4 zmSC
+22 Mode=eModeUtiliseLieux
+1 0 0 0 0 0 0 0 0 1 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+2 zp
+22 Mode=eModeUtiliseLieux
+9 0 0 0 0 0 0 0 0 6 11 12 13 14 23 24 25 26 17 EntiteGeometrique
+17 EntiteGeometrique
+11 Version 3.0
+4 zpSC
+22 Mode=eModeUtiliseLieux
+1 0 0 0 0 0 0 0 0 6 17 EntiteGeometrique
+22 ListEntitesGeometrique
