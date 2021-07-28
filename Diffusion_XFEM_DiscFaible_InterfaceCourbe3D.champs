@@ -24,10 +24,10 @@ scalaire alpha2 2
 
 #On definit l'interface
 #scalaire r0 0.3331
-#scalaire r0 0.4441
-scalaire r0 0.066666
-#scalaire c0 0
-scalaire c0 -0.375
+scalaire r0 0.4441
+#scalaire r0 0.066666
+scalaire c0 0
+#scalaire c0 -0.375
 scalaire r f(c0)=sqrt((x-c0)^2+(y-c0)^2+(z-c0)^2)
 #scalaire r sqrt(x^2+y^2+z^2)
 scalaire levelsetAna f(r,r0) = r^2-r0^2
@@ -50,20 +50,22 @@ scalaire UnMoinsHeaviside f(Heaviside)=1-Heaviside
 scalquad u 0
 #scallin u 0
 
-scalaire uAna f()=x
 #scalaire uAna f(r,r0,levelset,alpha1,alpha2)=if(levelset<=0,r^2/alpha1,(r^2/alpha2-r0^2/alpha2 + r0^2/alpha1))
-#scalaire "h" f(alpha1,alpha2,r,r0)=if(r<r0, 1/alpha1,1/alpha2+(1/alpha1-1/alpha2)*exp(r^2-r0^2))
+scalaire "h" f(alpha1,alpha2,r,r0)=if(r<r0, 1/alpha1,1/alpha2+(1/alpha1-1/alpha2)*exp(r^2-r0^2))
 #scalaire "uAna" f(r,h)=x*h*exp(-r^2)
+scalaire "uAna" f(r,h)=h*exp(-r^2)
+#scalaire uAna f()=x
 
 # Le champ F: terme source
 #scalaire F f(r)=-2*x*exp(-r^2)*(2*r^2-5)
-scalaire F 0
+scalaire F f(r)=-exp(-r^2)*(4*r^2-6)
+#scalaire F 0
 #scalaire "F" f(r)=-6
 
 # On definit la discontinuite faible imposee (au niveau de la levelset)
 #scalaire Gn f(nx,alpha1,alpha2,r0)=(1-alpha2/alpha1)*exp(-r0^2)*nx
-scalaire Gn f(nx,alpha1,alpha2)=(alpha1-alpha2)*nx
-#scalaire Gn 0
+#scalaire Gn f(nx,alpha1,alpha2)=(alpha1-alpha2)*nx
+scalaire Gn 0
 
 # On definit la discontinuite forte imposee (au niveau de la levelset)
 #scalaire Gd f(alpha1)=x/alpha1
@@ -72,7 +74,12 @@ scalaire Gn f(nx,alpha1,alpha2)=(alpha1-alpha2)*nx
 scalaire erreurUs f(uAna,u)=abs(uAna-u)
 scalaire NL2_OmegaSansGamma  -1
 scalaire SNH1_OmegaSansGamma -1
-
+scalh H
+scalaire hMax 0
+scalaire hMin 0
+vectoriel3d posHMin [0,0,0]
+vectoriel3d posHMax [0,0,0]
+pp_calcul_position_min_max_champ  pp_calcule_hmax [champgeo,H,champgeo,Zero,Un,hMin,posHMin,hMax,posHMax,schema_intg,Elements]
 
 # champ permettant de dédoubler les degrés de libertés pour la création du champ XFEM dans le MSE-Volume
 #scallin u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma

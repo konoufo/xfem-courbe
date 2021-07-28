@@ -156,6 +156,7 @@ scalaire SNH1_Omega f(SNH1_MSEPlus,SNH1_MSEMoins,SNH1_OmegaSansGamma)=sqrt(SNH1_
   ajouteDReel            SNH1_MSEPlus
   ajouteDReel            SNH1_MSEMoins
   ajouteDReel            SNH1_OmegaSansGamma
+  ajouteDReel            hMax
   ajouteChamp            NL2_Omega
   ajouteChamp            SNH1_Omega
 # Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):
@@ -166,6 +167,7 @@ pp_exportation pp_exporte_mse [MSE]
 pp_exportation pp_exporte_nl2_omega [Norme_L2_Omega]
 
 { Actions
+  execute pp_calcule_hmax
   execute pp_cree_mse
   execute pp_optEnt
   
