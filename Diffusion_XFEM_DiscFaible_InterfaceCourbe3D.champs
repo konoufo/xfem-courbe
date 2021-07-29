@@ -74,13 +74,6 @@ scalaire Gn 0
 scalaire erreurUs f(uAna,u)=abs(uAna-u)
 scalaire NL2_OmegaSansGamma  -1
 scalaire SNH1_OmegaSansGamma -1
-scalh H
-scalaire hMax 0
-scalaire hMin 0
-vectoriel3d posHMin [0,0,0]
-vectoriel3d posHMax [0,0,0]
-pp_calcul_position_min_max_champ  pp_calcule_hmax [champgeo,H,champgeo,Zero,Un,hMin,posHMin,hMax,posHMax,schema_intg,Elements]
-
 # champ permettant de dédoubler les degrés de libertés pour la création du champ XFEM dans le MSE-Volume
 #scallin u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
 scalquad u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
@@ -164,6 +157,14 @@ pp_operationsurentite pp_optEnt [complement,EntiteOmegaSansGamma,EntiteOmega_Gam
 
 #pp afin de calculer la norme l2 sur OmegaSansGamma
 pp_norme_l2 pp_norme_l2_omega_sans_gamma [erreurUs,NL2_OmegaSansGamma,SNH1_OmegaSansGamma,schema_intg,EntiteOmegaSansGamma]
+
+
+scalh H
+scalaire hMax 0
+scalaire hMin 0
+vectoriel3d posHMin [0,0,0]
+vectoriel3d posHMax [0,0,0]
+pp_calcul_position_min_max_champ  pp_calcule_hmax [champgeo,H,champgeo,Zero,Un,hMin,posHMin,hMax,posHMax,schema_intg,Elements]
 
 #{ Actions
 #  execute pp_exporte_maillage
