@@ -157,6 +157,7 @@ scalaire SNH1_Omega f(SNH1_MSEPlus,SNH1_MSEMoins,SNH1_OmegaSansGamma)=sqrt(SNH1_
   ajouteDReel            SNH1_MSEMoins
   ajouteDReel            SNH1_OmegaSansGamma
   ajouteDReel            hMax
+  ajouteDReel            hMin
   ajouteChamp            NL2_Omega
   ajouteChamp            SNH1_Omega
 # Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):

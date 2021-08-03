@@ -14,15 +14,22 @@ pp_calcul_integrale_champ_scalaire pp_int_VolumeEntiteMSEMoins [Un,EntiteMSEMoin
 pp_calcul_integrale_champ_scalaire pp_int_VolumeEntiteMSEPlus  [Un,EntiteMSEPlus, schema_intg,volume_EntiteMSEPlus]
 pp_calcul_integrale_champ_scalaire pp_int_AireEntiteGamma    [Un,EntiteGamma,   schema_intg,aire_EntiteGamma]
 
+scalh H
+scalaire hMax 0
+scalaire hMin 0
+vectoriel3d posHMin [0,0,0]
+vectoriel3d posHMax [0,0,0]
+pp_calcul_position_min_max_champ  pp_calcule_hmax [champgeo,H,champgeo,Zero,Un,hMin,posHMin,hMax,posHMax,schema_intg,Elements]
 # Création d'exportations:
 { exportation            MSE
-  # format_exportation     GIREF
+  format_exportation     GIREF
   # format_exportation     VTK
    asgnDegreInterpolation Exportation::eMAILLAGE_QUADRATIQUE
    ajouteDReel volume_EntiteOmega_Gamma
    ajouteDReel volume_EntiteMSEMoins
    ajouteDReel volume_EntiteMSEPlus
    ajouteDReel aire_EntiteGamma
+   ajouteDReel hMax
    # Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):
    prefixe_sorties $CheminAccesExport$/resultats-VolumeMSE
     
@@ -31,6 +38,8 @@ pp_exportation pp_exporte_mse [MSE]
 
 { Actions
   execute pp_cree_mse
+  execute pp_calcule_hmax
+  execute pp_exporte_mse
   #execute pp_int_AireEntiteGamma
   #execute pp_int_volumeEntiteOmega_Gamma
   #execute pp_int_VolumeEntiteMSEMoins

@@ -107,14 +107,14 @@ schemaintg schema_intg ParamSchema
   ksp_view
 }
 
-solveur_lin_petsc prefixe_options slin o_slin
+solveur_lin_petsc prefixe_options Solveur(ProbEFGlobal) o_slin
 
 # Création du solveur *non-linéaire* en spécifiant
 # le solveur linéaire à utiliser:
-solveur_nlin_petsc solveur_lin Solveur(ProbEFGlobal) slin
+#solveur_nlin_petsc solveur_lin Solveur(ProbEFGlobal) slin
 
 #On crée un critère de convergence en norme infinie:
-ccninfcorr CCNInf_T [1e-9,1e30,Solveur(ProbEFGlobal)]
+#ccninfcorr CCNInf_T [1e-9,1e30,Solveur(ProbEFGlobal)]
 
 { ProbEFGlobal
   tfdiffusion   Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
