@@ -14,9 +14,15 @@ cree_entite EntiteOmega_Gamma
 cree_entite EntiteOmegaSansGamma
 cree_entite EntiteGamma
 
+# Calcul de taille de maille
+scalh H
+scalaire hMax 0
+scalaire hMin 0
+vectoriel3d posHMin [0,0,0]
+vectoriel3d posHMax [0,0,0]
 # Parametre de Nitsche en fonction de taille de maillage (calcul de convergence)
-scalaire hAnaConv 0.05
-scalaire Gamma f(hAnaConv)=4500/hAnaConv
+# scalaire hAnaConv 1
+scalaire Gamma f(hMax)=4500/hMax
 
 #Creation de champ scalaire intervant dans notre calcul
 scalaire alpha1 1
@@ -152,12 +158,7 @@ pp_operationsurentite pp_optEnt [complement,EntiteOmegaSansGamma,EntiteOmega_Gam
 #pp afin de calculer la norme l2 sur OmegaSansGamma
 pp_norme_l2 pp_norme_l2_omega_sans_gamma [erreurUs,NL2_OmegaSansGamma,SNH1_OmegaSansGamma,schema_intg,EntiteOmegaSansGamma]
 
-
-scalh H
-scalaire hMax 0
-scalaire hMin 0
-vectoriel3d posHMin [0,0,0]
-vectoriel3d posHMax [0,0,0]
+#pp afin de calculer la taille de maille hMax
 pp_calcul_position_min_max_champ  pp_calcule_hmax [champgeo,H,champgeo,Zero,Un,hMin,posHMin,hMax,posHMax,schema_intg,Elements]
 
 #{ Actions
