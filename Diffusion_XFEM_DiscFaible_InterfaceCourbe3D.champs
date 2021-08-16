@@ -31,19 +31,19 @@ scalaire alpha2 2
 #On definit l'interface
 scalaire r0 0.33331
 #scalaire r0 0.066666
-scalaire c0 0
 #scalaire c0 -0.375
-scalaire r f(c0)=sqrt((x-c0)^2+(y-c0)^2+(z-c0)^2)
-#scalaire r sqrt(x^2+y^2+z^2)
+scalaire x0 0
+scalaire y0 0
+scalaire z0 0.5
+scalaire r f(x0,y0,z0)=sqrt((x-x0)^2+(y-y0)^2+(z-z0)^2)
 scalaire levelsetAna f(r,r0) = r^2-r0^2
 #scalquad levelset reinterpole(levelsetAna)
 #scallin levelset reinterpole(levelsetAna)
 alias levelset=levelsetAna
 # La normale sortante a la levelset
-scalaire "nx" f(r,c0)=(x-c0)/r
-scalaire "ny" f(r,c0)=(y-c0)/r
-scalaire "nz" f(r,c0)=(z-c0)/r
-
+scalaire "nx" f(r,x0)=(x-x0)/r
+scalaire "ny" f(r,y0)=(y-y0)/r
+scalaire "nz" f(r,z0)=(z-z0)/r
 empilementv3d "normale_levelset" [nx,ny,nz]
 
 #Définition du champ Heveaside
