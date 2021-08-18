@@ -1,0 +1,322 @@
+Mon Aug 16 19:48:48 EDT 2021
+xfem sphere inc; p2gp1
+DEBUT PROGRAMME
+Binaire MEFPP: GIREF.AppImage MEF++
+Script de maillage: ../maillages/choisit_maillage.sh
+Nb. de points: 17
+Valeur de h: 0\.0625
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
+Attention :  On ne peut exporter des valeurs aux PPI avec un maillage 3D, la classe qui crée les maillages aux points d'intégration ne fonctionne pas pour les tétras ni les prismes triangulaires. Il faut faire évoluer ConstructeurMaillageAPartirSchemaIntg.
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_plus [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_moins [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vs [champgeo, u_xfem_plus, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhp [champgeo, u, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vs [champgeo, u_xfem_moins, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhm [champgeo, u, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhp [champgeo,F,u_xfem_plus,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_plus [champgeo,F,u,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhm [champgeo,F,u_xfem_moins,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_moins [champgeo,F,u,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk1gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk2gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhmgn [champgeo, gn, u_xfem_moins, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhpgn [champgeo, gn, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus] 
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]  
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm2 [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp [champgeo, u, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp2 [champgeo, u, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+** PETSc DEPRECATION WARNING ** : the option -pc_factor_mat_solver_package is deprecated as of version 3.9 and will be removed in a future release. Please use the option -pc_factor_mat_solver_type instead. (Silence this warning with -options_suppress_deprecated_warnings)
+KSP Object: (o_slin) 1 MPI processes
+  type: preonly
+  maximum iterations=10000, initial guess is zero
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using NONE norm type for convergence test
+PC Object: (o_slin) 1 MPI processes
+  type: lu
+    out-of-place factorization
+    tolerance for zero pivot 2.22045e-14
+    matrix ordering: nd
+    factor fill ratio given 5., needed 23.4617
+      Factored matrix follows:
+        Mat Object: 1 MPI processes
+          type: seqaij
+          rows=40985, cols=40985
+          package used to perform factorization: petsc
+          total: nonzeros=26405101, allocated nonzeros=26405101
+            not using I-node routines
+  linear system matrix = precond matrix:
+  Mat Object: (o_slin) 1 MPI processes
+    type: seqaij
+    rows=40985, cols=40985
+    total: nonzeros=1125455, allocated nonzeros=1125455
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node routines
+Vous avez ajouté le champ erreurUs à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ uAna à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ u à l'exportation ProbEFGlobal.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export ProbEFGlobal
+Vous avez ajouté le champ UnMoinsHeaviside à l'exportation MSE.
+Vous avez ajouté le champ Heaviside à l'exportation MSE.
+Vous avez ajouté le champ champ_k à l'exportation MSE.
+Vous avez ajouté le champ erreurGamma à l'exportation MSE.
+Vous avez ajouté le champ erreurm à l'exportation MSE.
+Vous avez ajouté le champ erreurp à l'exportation MSE.
+Vous avez ajouté le champ uAna à l'exportation MSE.
+Vous avez ajouté le champ u_partie_enrichie à l'exportation MSE.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export MSE
+Vous avez ajouté le champ SNH1_Omega à l'exportation Norme_L2_Omega.
+Vous avez ajouté le champ NL2_Omega à l'exportation Norme_L2_Omega.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationGIREF pour l'export Norme_L2_Omega
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export Norme_L2_Omega
+Info      :  On a exécuté 10 actions.
+Nb. de points: 21
+Valeur de h: 0\.05
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
+Attention :  On ne peut exporter des valeurs aux PPI avec un maillage 3D, la classe qui crée les maillages aux points d'intégration ne fonctionne pas pour les tétras ni les prismes triangulaires. Il faut faire évoluer ConstructeurMaillageAPartirSchemaIntg.
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_plus [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_moins [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vs [champgeo, u_xfem_plus, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhp [champgeo, u, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vs [champgeo, u_xfem_moins, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhm [champgeo, u, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhp [champgeo,F,u_xfem_plus,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_plus [champgeo,F,u,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhm [champgeo,F,u_xfem_moins,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_moins [champgeo,F,u,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk1gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk2gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhmgn [champgeo, gn, u_xfem_moins, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhpgn [champgeo, gn, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus] 
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]  
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm2 [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp [champgeo, u, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp2 [champgeo, u, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+** PETSc DEPRECATION WARNING ** : the option -pc_factor_mat_solver_package is deprecated as of version 3.9 and will be removed in a future release. Please use the option -pc_factor_mat_solver_type instead. (Silence this warning with -options_suppress_deprecated_warnings)
+KSP Object: (o_slin) 1 MPI processes
+  type: preonly
+  maximum iterations=10000, initial guess is zero
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using NONE norm type for convergence test
+PC Object: (o_slin) 1 MPI processes
+  type: lu
+    out-of-place factorization
+    tolerance for zero pivot 2.22045e-14
+    matrix ordering: nd
+    factor fill ratio given 5., needed 32.2374
+      Factored matrix follows:
+        Mat Object: 1 MPI processes
+          type: seqaij
+          rows=76784, cols=76784
+          package used to perform factorization: petsc
+          total: nonzeros=68422664, allocated nonzeros=68422664
+            not using I-node routines
+  linear system matrix = precond matrix:
+  Mat Object: (o_slin) 1 MPI processes
+    type: seqaij
+    rows=76784, cols=76784
+    total: nonzeros=2122462, allocated nonzeros=2122462
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node routines
+Vous avez ajouté le champ erreurUs à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ uAna à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ u à l'exportation ProbEFGlobal.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export ProbEFGlobal
+Vous avez ajouté le champ UnMoinsHeaviside à l'exportation MSE.
+Vous avez ajouté le champ Heaviside à l'exportation MSE.
+Vous avez ajouté le champ champ_k à l'exportation MSE.
+Vous avez ajouté le champ erreurGamma à l'exportation MSE.
+Vous avez ajouté le champ erreurm à l'exportation MSE.
+Vous avez ajouté le champ erreurp à l'exportation MSE.
+Vous avez ajouté le champ uAna à l'exportation MSE.
+Vous avez ajouté le champ u_partie_enrichie à l'exportation MSE.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export MSE
+Vous avez ajouté le champ SNH1_Omega à l'exportation Norme_L2_Omega.
+Vous avez ajouté le champ NL2_Omega à l'exportation Norme_L2_Omega.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationGIREF pour l'export Norme_L2_Omega
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export Norme_L2_Omega
+Info      :  On a exécuté 10 actions.
+Nb. de points: 46
+Valeur de h: 0\.022222222222222
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
+Attention :  On ne peut exporter des valeurs aux PPI avec un maillage 3D, la classe qui crée les maillages aux points d'intégration ne fonctionne pas pour les tétras ni les prismes triangulaires. Il faut faire évoluer ConstructeurMaillageAPartirSchemaIntg.
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_plus [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_moins [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vs [champgeo, u_xfem_plus, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhp [champgeo, u, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vs [champgeo, u_xfem_moins, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhm [champgeo, u, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhp [champgeo,F,u_xfem_plus,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_plus [champgeo,F,u,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhm [champgeo,F,u_xfem_moins,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_moins [champgeo,F,u,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk1gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk2gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhmgn [champgeo, gn, u_xfem_moins, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhpgn [champgeo, gn, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus] 
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]  
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm2 [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp [champgeo, u, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp2 [champgeo, u, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+** PETSc DEPRECATION WARNING ** : the option -pc_factor_mat_solver_package is deprecated as of version 3.9 and will be removed in a future release. Please use the option -pc_factor_mat_solver_type instead. (Silence this warning with -options_suppress_deprecated_warnings)
+KSP Object: (o_slin) 1 MPI processes
+  type: preonly
+  maximum iterations=10000, initial guess is zero
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using NONE norm type for convergence test
+PC Object: (o_slin) 1 MPI processes
+  type: lu
+    out-of-place factorization
+    tolerance for zero pivot 2.22045e-14
+    matrix ordering: nd
+    factor fill ratio given 5., needed 77.6638
+      Factored matrix follows:
+        Mat Object: 1 MPI processes
+          type: seqaij
+          rows=793949, cols=793949
+          package used to perform factorization: petsc
+          total: nonzeros=1738683507, allocated nonzeros=1738683507
+            not using I-node routines
+  linear system matrix = precond matrix:
+  Mat Object: (o_slin) 1 MPI processes
+    type: seqaij
+    rows=793949, cols=793949
+    total: nonzeros=22387323, allocated nonzeros=22387323
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node routines
+Info      :  On a exécuté 5 actions.
+ERR_SOLVEUR_DIVERGENCE::KSPConvergedReason : -11
+Echec: MEF++ /home/mefpp_mcouliba/xfemisoparametrique/diffusion3d/cas_courbe/Diffusion_XFEM_DiscFaible_InterfaceCourbe3D
+Mon Aug 16 21:40:33 EDT 2021
+Tue Aug 17 16:43:00 EDT 2021
+xfem sphere inc; p2gp1
+DEBUT PROGRAMME
+Binaire MEFPP: GIREF.AppImage MEF++
+Script de maillage: ../maillages/choisit_maillage.sh
+Nb. de points: 65
+Valeur de h: 0\.015625
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
+Attention :  On ne peut exporter des valeurs aux PPI avec un maillage 3D, la classe qui crée les maillages aux points d'intégration ne fonctionne pas pour les tétras ni les prismes triangulaires. Il faut faire évoluer ConstructeurMaillageAPartirSchemaIntg.
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_plus [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_moins [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vs [champgeo, u_xfem_plus, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhp [champgeo, u, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vs [champgeo, u_xfem_moins, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhm [champgeo, u, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhp [champgeo,F,u_xfem_plus,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_plus [champgeo,F,u,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhm [champgeo,F,u_xfem_moins,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_moins [champgeo,F,u,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk1gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk2gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhmgn [champgeo, gn, u_xfem_moins, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhpgn [champgeo, gn, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus] 
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]  
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm2 [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp [champgeo, u, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp2 [champgeo, u, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+** PETSc DEPRECATION WARNING ** : the option -pc_factor_mat_solver_package is deprecated as of version 3.9 and will be removed in a future release. Please use the option -pc_factor_mat_solver_type instead. (Silence this warning with -options_suppress_deprecated_warnings)
+[0]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
+[0]PETSC ERROR: Out of memory. This could be due to allocating
+[0]PETSC ERROR: too large an object or bleeding by not properly
+[0]PETSC ERROR: destroying unneeded objects.
+[0]PETSC ERROR: Memory allocated 0 Memory used by process 35606720512
+[0]PETSC ERROR: Try running with -malloc_dump or -malloc_view for info.
+[0]PETSC ERROR: Memory requested 18446744068353304576
+[0]PETSC ERROR: See https://www.mcs.anl.gov/petsc/documentation/faq.html for trouble shooting.
+[0]PETSC ERROR: Petsc Release Version 3.14.1, Nov 03, 2020 
+[0]PETSC ERROR: MEF++ on a  named gandalf by mcouliba Tue Aug 17 16:43:01 2021
+[0]PETSC ERROR: Configure options --prefix=/opt/petsc-3.14.1_opt_openmpi-4.0.5_opt --with-mpi-compilers=1 --with-mpi-dir=/opt/openmpi-4.0.5_opt --with-cxx-dialect=C++11 --with-make-np=12 --with-shared-libraries=1 --with-debugging=no --with-memalign=64 --with-visibility=0 --with-64-bit-indices=0 --download-ml=yes --download-mumps=yes --download-superlu=yes --download-superlu_dist=yes --download-parmetis=yes --download-ptscotch=yes --download-metis=yes --download-suitesparse=yes --download-hypre=yes --with-blaslapack-dir=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64 --with-mkl_pardiso-dir=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl --with-mkl_cpardiso-dir=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl --with-scalapack=1 --with-scalapack-include=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/include --with-scalapack-lib="-L/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64 -lmkl_scalapack_lp64 -lmkl_blacs_openmpi_lp64"
+[0]PETSC ERROR: #1 MatLUFactorSymbolic_SeqAIJ() line 369 in /ompi-opt/petsc-3.14.1-opt/src/mat/impls/aij/seq/aijfact.c
+[0]PETSC ERROR: #2 PetscMallocA() line 418 in /ompi-opt/petsc-3.14.1-opt/src/sys/memory/mal.c
+[0]PETSC ERROR: #3 MatLUFactorSymbolic_SeqAIJ() line 369 in /ompi-opt/petsc-3.14.1-opt/src/mat/impls/aij/seq/aijfact.c
+[0]PETSC ERROR: #4 MatLUFactorSymbolic() line 3114 in /ompi-opt/petsc-3.14.1-opt/src/mat/interface/matrix.c
+[0]PETSC ERROR: #5 PCSetUp_LU() line 94 in /ompi-opt/petsc-3.14.1-opt/src/ksp/pc/impls/factor/lu/lu.c
+[0]PETSC ERROR: #6 PCSetUp() line 1009 in /ompi-opt/petsc-3.14.1-opt/src/ksp/pc/interface/precon.c
+[0]PETSC ERROR: #7 KSPSetUp() line 406 in /ompi-opt/petsc-3.14.1-opt/src/ksp/ksp/interface/itfunc.c
+Info      :  On a exécuté 5 actions.
+ERREUR PETSc: no. 55. o_slin KSPSetUp
+Echec: MEF++ /home/mefpp_mcouliba/xfemisoparametrique/diffusion3d/cas_courbe/Diffusion_XFEM_DiscFaible_InterfaceCourbe3D
+Tue Aug 17 17:24:56 EDT 2021
