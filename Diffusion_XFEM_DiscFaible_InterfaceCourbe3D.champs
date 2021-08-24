@@ -52,8 +52,8 @@ scalaire UnMoinsHeaviside f(Heaviside)=1-Heaviside
 
 # Définition/création d'un champ scalaire linéaire. Ce champ sera utilisé comme
 # l'inconnu dans le calcul :
-scalquad u 0
-#scallin u 0
+#scalquad u 0
+scallin u 0
 
 #scalaire uAna f(r,r0,levelset,alpha1,alpha2)=if(levelset<=0,r^2/alpha1,(r^2/alpha2-r0^2/alpha2 + r0^2/alpha1))
 scalaire "h" f(alpha1,alpha2,r,r0)=if(r<r0, 1/alpha1,1/alpha2+(1/alpha1-1/alpha2)*exp(r^2-r0^2))
@@ -80,21 +80,21 @@ scalaire erreurUs f(uAna,u)=abs(uAna-u)
 scalaire NL2_OmegaSansGamma  -1
 scalaire SNH1_OmegaSansGamma -1
 # champ permettant de dédoubler les degrés de libertés pour la création du champ XFEM dans le MSE-Volume
-#scallin u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
-scalquad u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
+scallin u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
+#scalquad u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
 
 scalaire ks f(levelset,alpha1,alpha2)=if(levelset<0,alpha1,alpha2)
 empilementto2 alpha [ks,ks,ks,Zero,Zero,Zero]
 
 # Paramètres qui serviront à créer un schéma d'intégration:
 { ParamSchema
-    scalaire ptintgarete               7
+    scalaire ptintgarete               11
     scalaire ptintgface3               16
     scalaire ptintgface4               3
     scalaire ptintgelement1d           7
     scalaire ptintgtriangle            16
     scalaire ptintgquadrangle          3
-    scalaire ptintgtetra               15
+    scalaire ptintgtetra               15 
     scalaire ptintgprismetri_legendre  3
     scalaire ptintgprismetri_triangle  7
     scalaire ptintghexa                3
@@ -107,8 +107,8 @@ schemaintg schema_intg ParamSchema
 # Création d'option PETSc qui serviront à définir un solveur (ksp, pc et mat):
 { options_prefixees_petsc o_slin
   ksp_type preonly
-  pc_factor_mat_solver_type petsc
-  pc_factor_mat_solver_package petsc
+#  pc_factor_mat_solver_type petsc
+#  pc_factor_mat_solver_package petsc
   ksp_view
 }
 
@@ -161,6 +161,6 @@ pp_norme_l2 pp_norme_l2_omega_sans_gamma [erreurUs,NL2_OmegaSansGamma,SNH1_Omega
 #pp afin de calculer la taille de maille hMax
 pp_calcul_position_min_max_champ  pp_calcule_hmax [champgeo,H,champgeo,Zero,Un,hMin,posHMin,hMax,posHMax,schema_intg,Elements]
 
-#{ Actions
-#  execute pp_exporte_maillage
-#}
+{ Actions
+execute pp_calcule_hmax
+}
