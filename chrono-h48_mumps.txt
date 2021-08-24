@@ -1,0 +1,95 @@
+[0]MEF++ Diffusion_XFEM_DiscFaible_InterfaceCourbe3D
+[0]   SHA_DEPOT_GIREF    : e61d2442157a878ceee1469f6115001bb97bd2ce
+[0]   STATUS_DEPOT_GIREF : 
+[0]   SHA_DEPOT_TV       : 31b7acf138d6a06c343d2d070463e60493490bba
+[0]
+[0]Temps de profiling "usager"
+[0] Total    sec(WC) s(SelfUser) s(SelfSys) s(ChildUser) s(ChildSys) (VmSizeDiff , VmRSSDiff, VmDataDiff) nbApls      Etiquette
+[0] Total    675.0643  1230.4888    17.8727      2.5668     15.8351  3161200 KB   1786204 KB   2565116 KB    1 x  Prog_complet.
+[0] Total      0.6606     0.0581     0.0334      0.1038      0.0646   256480 KB     10008 KB     20148 KB    1 x   PetscInit.
+[0] Total      5.5061     4.5264     0.3869      0.0000      0.0000  1263076 KB   1212412 KB   1196336 KB    1 x   CollectionDeCorps::lisDonneesDeBase.
+[0] Total      5.4837     4.5245     0.3869      0.0000      0.0000  1263076 KB   1212412 KB   1196336 KB    1 x    CorpsAvecMaillage::lisDonneesDeBaseAvecMaillage(Diffusion_XFEM_DiscFaible_InterfaceCourbe3D).
+[0] Total      1.7290     1.4627     0.2102      0.0000      0.0000   525788 KB    528592 KB    525788 KB    1 x     CorpsAvecMaillage::lectureMaillage(Diffusion_XFEM_DiscFaible_InterfaceCourbe3D).
+[0] Total      1.7289     1.4626     0.2102      0.0000      0.0000   525788 KB    528592 KB    525788 KB    1 x      Maillage::importeParallele.
+[0] Total      1.7287     1.4624     0.2102      0.0000      0.0000   525652 KB    528592 KB    525652 KB    1 x       Maillage::importeSequentiel.
+[0] Total      0.7093     0.6898     0.0038      0.0000      0.0000    17424 KB     18244 KB     17424 KB    1 x     Geometrie::reconstructionModeChampGeometrique.
+[0] Total      0.3894     0.1866     0.0136      0.0000      0.0000    33824 KB     41180 KB     33824 KB    1 x     CorpsAvecMaillage::lectureGFC(Diffusion_XFEM_DiscFaible_InterfaceCourbe3D).
+[0] Total      0.0001     0.0001     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x     CorpsAvecMaillage::lectureGFC2(Diffusion_XFEM_DiscFaible_InterfaceCourbe3D).
+[0] Total      1.5565     1.3139     0.0094      0.0000      0.0000    90956 KB     26912 KB     24216 KB    1 x     CorpsAvecMaillage::construitGeom2eFois(Diffusion_XFEM_DiscFaible_InterfaceCourbe3D).
+[0] Total      1.5564     1.3137     0.0094      0.0000      0.0000    90956 KB     26912 KB     24216 KB    1 x      Geometrie::reconstructionModeTocher.
+[0] Total      0.4711     0.3439     0.0578      0.0000      0.0000   230368 KB    232836 KB    230368 KB    1 x     CorpsAvecMaillage::creeMSEVolume(Diffusion_XFEM_DiscFaible_InterfaceCourbe3D).
+[0] Total      1.3173     1.2667     0.0475      0.0000      0.0000   182292 KB    182436 KB    182292 KB    1 x   PP::pp_calcule_hmax::effectueCalcul.
+[0] Total      4.9677     4.4770     0.1380      0.0740      0.0984   280928 KB    280244 KB    279980 KB    1 x   PP::pp_cree_mse::effectueCalcul.
+[0] Total      0.7331     0.6524     0.0788      0.0000      0.0000   349800 KB    349764 KB    349800 KB    1 x   PP::DEFAUT::effectueCalcul.
+[0] Total    365.0695   364.0251     0.0009      0.0000      0.0000        0 KB         0 KB         0 KB    1 x   PP::pp_champ_k::effectueCalcul.
+[0] Total    365.0682   364.0248     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x    TempsPPChampKXfemHansbo2002.
+[0] Total    235.5403   821.5215     6.5216      0.6517      1.6069 24763188 KB  22406988 KB  24498052 KB    1 x   PP::lPPResoud_0_dans_section_actions_pour_solveur_Solveur(ProbEFGlobal)::effectueCalcul.
+[0] Total    235.5367   821.5213     6.5216      0.6517      1.6069 24763188 KB  22406988 KB  24498052 KB    1 x    SolveurLinPETSc::resoudre:ProbEFGlobal.
+[0] Total      6.5547     6.2707     0.1990      0.0000      0.0000   752732 KB    754656 KB    752732 KB    1 x     SolveurLinPETSc::resoudre::init:ProbEFGlobal.
+[0] Total      6.5547     6.2706     0.1990      0.0000      0.0000   752732 KB    754656 KB    752732 KB    1 x      SolveurLinPETSc::initialise:ProbEFGlobal.
+[0] Total      0.3012     0.2832     0.0124      0.0000      0.0000        0 KB       576 KB         0 KB    1 x       SolveurLinPETSc::initialise:initialiseNumerotation:ProbEFGlobal.
+[0] Total      0.3010     0.2831     0.0124      0.0000      0.0000        0 KB       296 KB         0 KB    1 x        DDLsNumerotation::numeroteGIS().
+[0] Total      0.0913     0.0862     0.0030      0.0000      0.0000        0 KB         0 KB         0 KB    1 x         DDLsNumerotation::marqueEtNumeroteDDLs().
+[0] Total      0.0278     0.0247     0.0013      0.0000      0.0000        0 KB         0 KB         0 KB    3 x          DDLsNumerotation::numeroteGISChamps.
+[0] Total      0.0088     0.0000     0.0006      0.0000      0.0000        0 KB       276 KB         0 KB    1 x       SolveurLinPETSc::initialise:initialiseObjetPETSc:ProbEFGlobal.
+[0] Total      6.2142     5.9815     0.1847      0.0000      0.0000   752732 KB    753804 KB    752732 KB    1 x       MatricePETSc::asgnDimension(o_slin:957631x957631).
+[0] Total      6.1051     5.8729     0.1845      0.0000      0.0000   752732 KB    753804 KB    752732 KB    1 x        MatricePETScCSR::creeObjet(o_slin:957631x957631).
+[0] Total      4.3540     4.2414     0.0997      0.0000      0.0000   413820 KB    414168 KB    413820 KB    1 x         CompteurNonZeroCSRGIS_matrice(957631x957631).
+[0] Total      4.3531     4.2405     0.0997      0.0000      0.0000   413820 KB    414168 KB    413820 KB    1 x          CompteurNonZeroCSRGIS::algoMetaCouplages(957631x957631).
+[0] Total      1.0494     0.9589     0.0878      0.0000      0.0000   254364 KB    254264 KB    254364 KB    3 x           CompteurNonZeroCSRGIS::visiteEntiteGeometrique.
+[0] Total      3.0357     3.0146     0.0120      0.0000      0.0000    33132 KB     33188 KB     33132 KB    1 x           CompteurNonZeroCSRGIS::calculSequentielNbNonZerosParLigne(957631x957631).
+[0] Total      0.0440     0.0119     0.0070      0.0000      0.0000   338912 KB     22904 KB    338912 KB    1 x         MatricePETScCSR::creeObjetPrive.
+[0] Total      1.7041     1.6166     0.0778      0.0000      0.0000        0 KB    316732 KB         0 KB    1 x         MatricePETScCSR::definirStructureEtMettreAZeroAvecGIS(Matrice_ProbEFGlobal_A_Solveur(ProbEFGlobal)_:957631x957631).
+[0] Total      0.0038     0.0000     0.0010      0.0000      0.0000        0 KB         0 KB         0 KB    1 x       SolveurLinPETSc::initialise:newVecResidu:ProbEFGlobal.
+[0] Total      0.0197     0.0031     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x       SolveurLinPETSc::initialise:initialiseVecResidu:ProbEFGlobal.
+[0] Total      0.0000     0.0000     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x       SolveurLinPETSc::initialise:newVecCorrection:ProbEFGlobal.
+[0] Total      0.0017     0.0017     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x       SolveurLinPETSc::initialise:initialiseVecCorrection:ProbEFGlobal.
+[0] Total      0.0000     0.0000     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x     SolveurLinPETSc::resoudre::PPre:ProbEFGlobal.
+[0] Total     57.6568    54.5196     0.7777      0.6105      1.1847      268 KB      1704 KB        12 KB    1 x     SolveurLinPETSc::resoudre::ass:ProbEFGlobal.
+[0] Total      0.7711     0.0590     0.1017      0.1736      0.2289       40 KB      1068 KB         8 KB    1 x      SolveurLinPETSc::faisAssemblagePrive::appliqueChamp:ProbEFGlobal.
+[0] Total      0.0644     0.0233     0.0408      0.0000      0.0000        0 KB         0 KB         0 KB    1 x      SolveurLinPETSc::faisAssemblagePrive::debutAssemblage:ProbEFGlobal.
+[0] Total     56.6946    54.3121     0.6342      0.4369      0.9557      228 KB       636 KB         4 KB    1 x      SolveurLinPETSc::faisAssemblagePrive::assembleMatriceEtResidu:ProbEFGlobal.
+[0] Total     56.6945    54.3120     0.6342      0.4369      0.9557      228 KB       636 KB         4 KB    1 x       ProblemeEF::assemblePrive(Total):ProbEFGlobal.
+[0] Total     56.6945    54.3119     0.6342      0.4369      0.9557      228 KB       636 KB         4 KB    1 x        ProblemeEF::assemblePrive(Domaine):ProbEFGlobal.
+[0] Total     27.1050    26.3903     0.2234      0.1342      0.2621       36 KB       408 KB         4 KB    4 x         AssembleurEF::assembleElementBis():ProbEFGlobal[aAssembleurEF].
+[0] Total      0.0002     0.0002     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    4 x          AssembleurEF::prepareAvantAssemblage(assembleElementBis):ProbEFGlobal[aAssembleurEF].
+[0] Total      0.0004     0.0004     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    4 x          AssembleurEF::nettoieApresAssemblage(assembleElementBis):ProbEFGlobal[aAssembleurEF].
+[0] Total     29.5892    27.9214     0.4108      0.3027      0.6937      160 KB       196 KB         0 KB    1 x         AssembleurEF::assembleFrontiere():ProbEFGlobal[aAssembleurEF].
+[0] Total      0.0003     0.0003     0.0000      0.0000      0.0000        0 KB        40 KB         0 KB    1 x          AssembleurEF::prepareAvantAssemblage(assembleFrontiere):ProbEFGlobal[aAssembleurEF].
+[0] Total      0.0004     0.0004     0.0000      0.0000      0.0000        0 KB        12 KB         0 KB    1 x          AssembleurEF::nettoieApresAssemblage(assembleFrontiere):ProbEFGlobal[aAssembleurEF].
+[0] Total      0.0091     0.0081     0.0010      0.0000      0.0000        0 KB         0 KB         0 KB    1 x      SolveurLinPETSc::faisAssemblagePrive::appliqueMatrice:ProbEFGlobal.
+[0] Total      0.0078     0.0077     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x      SolveurLinPETSc::faisAssemblagePrive::appliqueResidu:ProbEFGlobal.
+[0] Total      0.0000     0.0000     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x      SolveurLinPETSc::faisAssemblagePrive::finAssemblageProbEFGlobal.
+[0] Total    165.7434   756.6117     5.0929      0.0000      0.0000 24010172 KB  21649940 KB  23745308 KB    1 x     SolveurLinPETSc::resoudre::resoudre:ProbEFGlobal.
+[0] Total    165.6976   756.5768     5.0839      0.0000      0.0000 24010172 KB  21649800 KB  23745308 KB    1 x      SolveurLinPETSc::resoudre_Factorisation_et_DR:ProbEFGlobal.
+[0] Total      0.0068     0.0007     0.0000      0.0000      0.0000        0 KB       248 KB         0 KB    1 x       asgnOperateurKSP.
+[0] Total    164.8527   751.8655     5.0779      0.0000      0.0000 24010172 KB  21649236 KB  23745308 KB    1 x       SolveurLinPETSc::resoudre:KSPSetUp:ProbEFGlobal.
+[0] Total      0.8378     4.7104     0.0060      0.0000      0.0000        0 KB       316 KB         0 KB    1 x       SolveurLinPETSc::resoudre:KSPSolve:ProbEFGlobal.
+[0] Total      0.0000     0.0000     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x      SolveurLinPETSc::CL+VecDDLs:ProbEFGlobal.
+[0] Total      0.0456     0.0346     0.0090      0.0000      0.0000        0 KB       140 KB         0 KB    1 x      SolveurLinPETSc::appliqueCorrectionAuProbleme:ProbEFGlobal.
+[0] Total      5.5816     4.1191     0.4520      0.0413      0.4222       16 KB       688 KB         0 KB    1 x     SolveurLinPETSc::resoudre::PPost:ProbEFGlobal.
+[0] Total      5.5813     4.1189     0.4520      0.0413      0.4222       16 KB       688 KB         0 KB    1 x      ProblemeEF::ecritResultats:ProbEFGlobal.
+[0] Total     25.2592     8.3875     5.9027      1.3746      9.3507      228 KB       416 KB        36 KB    1 x   PP::pp_norme_l2_omega_sans_gamma::effectueCalcul.
+[0] Total      6.3211     3.1762     1.1007      0.1341      1.7301       64 KB        64 KB         0 KB    1 x   PP::pp_norme_l2_mse_p::effectueCalcul.
+[0] Total      5.9509     3.0452     1.0910      0.1384      1.6657       64 KB        64 KB         0 KB    1 x   PP::pp_norme_l2_mse_m::effectueCalcul.
+[0] Total     18.1548    16.8302     0.5707      0.0292      0.4367       16 KB       132 KB         0 KB    1 x   PP::pp_exporte_mse::effectueCalcul.
+[0] Total      0.4311     0.4281     0.0000      0.0000      0.0000        0 KB        48 KB         0 KB    1 x    PP::u_xfem_plus.reinterpole_u_xfem_plus_::effectueCalcul.
+[0] Total      0.4340     0.4328     0.0000      0.0000      0.0000        0 KB        64 KB         0 KB    1 x    PP::u_xfem_moins.reinterpole_u_xfem_moins_::effectueCalcul.
+[0] Total      0.3501     0.3492     0.0000      0.0000      0.0000        0 KB         0 KB         0 KB    1 x    PP::u.reinterpole_u_::effectueCalcul.
+[0] Total      2.2868     0.6814     0.6485      0.0609      0.8818    27384 KB      1124 KB       120 KB    1 x   PP::pp_exporte_nl2_omega::effectueCalcul.
+[0] Total      0.1960     0.1434     0.0527      0.0000      0.0000    27340 KB       968 KB       112 KB    1 x    Maillage::exporteParallele.
+[0] Total      0.1926     0.1431     0.0527      0.0000      0.0000    27340 KB       968 KB       112 KB    1 x     ecritMaillageMPI.
+[0] Total      1.3047     0.1553     1.1421      0.0000      0.0000        0 KB         0 KB         0 KB    1 x   SolveurLinPETSc::detruitKSP.
+[0]Memoire VmSizeMin. mesure            : 563984 KB
+[0]Memoire VmSizeMax. mesure            : 27687356 KB
+[0]Memoire (VmSizeMax-VmSizeMin) mesure : 27123372 KB
+[0]Memoire VmRSSMin. mesure             : 171296 KB
+[0]Memoire VmRSSMax. mesure             : 24618300 KB
+[0]Memoire VmHWM (véritable RSSMax)     : 24826152 KB
+[0]Memoire (VmRSSMax-VmRSSMin) mesure   : 24447004 KB
+[0]Memoire VmDataMin. mesure             : 136748 KB
+[0]Memoire VmDataMax. mesure             : 26663636 KB
+[0]Memoire (VmDataMax-VmDataMin) mesure   : 26526888 KB
+[0]Memoire VmPeak(Init). mesure         : 563984 KB
+[0]Memoire VmPeak. mesure               : 27878952 KB
+[0]Memoire (VmPeak-VmPeak(Init)) mesure : 27314968 KB
