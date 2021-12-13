@@ -6,8 +6,8 @@ booleen GIREF_VERBOSE_SOLVEUR false
 problemeef ProbEFGlobal
 
 # Définition du champ de transformation géométrique utilisé pour le calcul:
-champgeolin champgeo
-#champgeoquad champgeo
+#champgeolin champgeo
+champgeoquad champgeo
 #Creation des entites intervenant dans le calcul et définies sur le maillage complet
 
 cree_entite EntiteOmega_Gamma
