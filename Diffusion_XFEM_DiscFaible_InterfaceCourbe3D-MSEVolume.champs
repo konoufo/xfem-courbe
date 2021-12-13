@@ -4,7 +4,8 @@ cree_entite EntiteMSEMoins
  
 
 #On remplit les entites vides des bons éléments
-pp_creemsedecoupageparlevelset     pp_cree_mse [levelset,EntiteOmega_Gamma,EntiteGamma,EntiteMSEPlus,EntiteMSEMoins]
+#pp_creemsedecoupageparlevelset     pp_cree_mse [levelset,EntiteOmega_Gamma,EntiteGamma,EntiteMSEPlus,EntiteMSEMoins]
+pp_creemsedecoupageparlevelset_en_deux     pp_cree_mse [levelset,EntiteOmega_Gamma,EntiteGamma,EntiteMSEPlus,EntiteMSEMoins]
 
 #PP permettant de calculer le champ kappa selon sa définition dans Hansbo
 scalconstelem champ_k 0
@@ -157,7 +158,7 @@ scalaire SNH1_Omega f(SNH1_MSEPlus,SNH1_MSEMoins,SNH1_OmegaSansGamma)=sqrt(SNH1_
   ajouteDReel            SNH1_MSEMoins
   ajouteDReel            SNH1_OmegaSansGamma
   ajouteDReel            hMax
-  ajouteDReel            hMin
+#  ajouteDReel            hMin
   ajouteChamp            NL2_Omega
   ajouteChamp            SNH1_Omega
 # Préfixe des fichiers de sorties (CheminAccesExport est un mot clef donné par l'environnement des TVs):

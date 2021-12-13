@@ -16,8 +16,8 @@ cree_entite EntiteGamma
 
 # Calcul de taille de maille
 scalh H
-scalaire hMax 0
-scalaire hMin 0
+scalaire hMax 1
+scalaire hMin 1
 vectoriel3d posHMin [0,0,0]
 vectoriel3d posHMax [0,0,0]
 # Parametre de Nitsche en fonction de taille de maillage (calcul de convergence)
@@ -52,8 +52,8 @@ scalaire UnMoinsHeaviside f(Heaviside)=1-Heaviside
 
 # Définition/création d'un champ scalaire linéaire. Ce champ sera utilisé comme
 # l'inconnu dans le calcul :
-#scalquad u 0
-scallin u 0
+scalquad u 0
+#scallin u 0
 
 #scalaire uAna f(r,r0,levelset,alpha1,alpha2)=if(levelset<=0,r^2/alpha1,(r^2/alpha2-r0^2/alpha2 + r0^2/alpha1))
 scalaire "h" f(alpha1,alpha2,r,r0)=if(r<r0, 1/alpha1,1/alpha2+(1/alpha1-1/alpha2)*exp(r^2-r0^2))
@@ -80,8 +80,8 @@ scalaire erreurUs f(uAna,u)=abs(uAna-u)
 scalaire NL2_OmegaSansGamma  -1
 scalaire SNH1_OmegaSansGamma -1
 # champ permettant de dédoubler les degrés de libertés pour la création du champ XFEM dans le MSE-Volume
-scallin u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
-#scalquad u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
+#scallin u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
+scalquad u_partie_enrichie 0 domaine=defaut::EntiteOmega_Gamma
 
 scalaire ks f(levelset,alpha1,alpha2)=if(levelset<0,alpha1,alpha2)
 empilementto2 alpha [ks,ks,ks,Zero,Zero,Zero]
