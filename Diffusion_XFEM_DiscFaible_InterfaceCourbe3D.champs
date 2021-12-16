@@ -20,16 +20,14 @@ scalaire hMax 1
 scalaire hMin 1
 vectoriel3d posHMin [0,0,0]
 vectoriel3d posHMax [0,0,0]
-# Parametre de Nitsche en fonction de taille de maillage (calcul de convergence)
-# scalaire hAnaConv 1
-scalaire Gamma f(hMax)=4500/hMax
 
 #Creation de champ scalaire intervant dans notre calcul
 scalaire alpha1 1
 scalaire alpha2 2
 
 #On definit l'interface
-scalaire r0 0.33331
+scalaire r0 0.14111
+#scalaire r0 0.33331
 #scalaire r0 0.066666
 #scalaire c0 -0.375
 scalaire x0 0
@@ -90,7 +88,7 @@ empilementto2 alpha [ks,ks,ks,Zero,Zero,Zero]
 { ParamSchema
     scalaire ptintgarete               11
     scalaire ptintgface3               16
-    scalaire ptintgface4               3
+    scalaire ptintgface4               4 
     scalaire ptintgelement1d           7
     scalaire ptintgtriangle            16
     scalaire ptintgquadrangle          3

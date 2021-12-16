@@ -1,8 +1,357 @@
-Mon Aug 16 19:48:48 EDT 2021
-xfem sphere inc; p2gp1
 DEBUT PROGRAMME
-Binaire MEFPP: GIREF.AppImage MEF++
+Commande: ../../scripts/analyseConvergence.sh Diffusion_XFEM_DiscFaible_InterfaceCourbe3D ../maillages/choisit_maillage.sh 5;9;17;33;49 /users/mcouliba/binGIREF/MEF++.opt
+Binaire MEFPP: /users/mcouliba/binGIREF/MEF++.opt
 Script de maillage: ../maillages/choisit_maillage.sh
+Nb. de points: 5
+Valeur de h: 0\.25
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
+Attention :  On ne peut exporter des valeurs aux PPI avec un maillage 3D, la classe qui crée les maillages aux points d'intégration ne fonctionne pas pour les tétras ni les prismes triangulaires. Il faut faire évoluer ConstructeurMaillageAPartirSchemaIntg.
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_plus [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_moins [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vs [champgeo, u_xfem_plus, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhp [champgeo, u, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vs [champgeo, u_xfem_moins, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhm [champgeo, u, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhp [champgeo,F,u_xfem_plus,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_plus [champgeo,F,u,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhm [champgeo,F,u_xfem_moins,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_moins [champgeo,F,u,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk1gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk2gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhmgn [champgeo, gn, u_xfem_moins, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhpgn [champgeo, gn, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus] 
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]  
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm2 [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp [champgeo, u, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp2 [champgeo, u, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+KSP Object: (o_slin) 1 MPI processes
+  type: preonly
+  maximum iterations=10000, initial guess is zero
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using NONE norm type for convergence test
+PC Object: (o_slin) 1 MPI processes
+  type: lu
+    out-of-place factorization
+    tolerance for zero pivot 2.22045e-14
+    matrix ordering: external
+    factor fill ratio given 0., needed 0.
+      Factored matrix follows:
+        Mat Object: 1 MPI processes
+          type: mumps
+          rows=794, cols=794
+          package used to perform factorization: mumps
+          total: nonzeros=35302, allocated nonzeros=35302
+            MUMPS run parameters:
+              SYM (matrix type):                   0
+              PAR (host participation):            1
+              ICNTL(1) (output for error):         6
+              ICNTL(2) (output of diagnostic msg): 0
+              ICNTL(3) (output for global info):   0
+              ICNTL(4) (level of printing):        0
+              ICNTL(5) (input mat struct):         0
+              ICNTL(6) (matrix prescaling):        7
+              ICNTL(7) (sequential matrix ordering):7
+              ICNTL(8) (scaling strategy):        77
+              ICNTL(10) (max num of refinements):  0
+              ICNTL(11) (error analysis):          0
+              ICNTL(12) (efficiency control):                         1
+              ICNTL(13) (sequential factorization of the root node):  0
+              ICNTL(14) (percentage of estimated workspace increase): 20
+              ICNTL(18) (input mat struct):                           0
+              ICNTL(19) (Schur complement info):                      0
+              ICNTL(20) (RHS sparse pattern):                         0
+              ICNTL(21) (solution struct):                            0
+              ICNTL(22) (in-core/out-of-core facility):               0
+              ICNTL(23) (max size of memory can be allocated locally):0
+              ICNTL(24) (detection of null pivot rows):               0
+              ICNTL(25) (computation of a null space basis):          0
+              ICNTL(26) (Schur options for RHS or solution):          0
+              ICNTL(27) (blocking size for multiple RHS):             -32
+              ICNTL(28) (use parallel or sequential ordering):        1
+              ICNTL(29) (parallel ordering):                          0
+              ICNTL(30) (user-specified set of entries in inv(A)):    0
+              ICNTL(31) (factors is discarded in the solve phase):    0
+              ICNTL(33) (compute determinant):                        0
+              ICNTL(35) (activate BLR based factorization):           0
+              ICNTL(36) (choice of BLR factorization variant):        0
+              ICNTL(38) (estimated compression rate of LU factors):   333
+              CNTL(1) (relative pivoting threshold):      0.01 
+              CNTL(2) (stopping criterion of refinement): 1.49012e-08 
+              CNTL(3) (absolute pivoting threshold):      0. 
+              CNTL(4) (value of static pivoting):         -1. 
+              CNTL(5) (fixation for null pivots):         0. 
+              CNTL(7) (dropping parameter for BLR):       0. 
+              RINFO(1) (local estimated flops for the elimination after analysis): 
+                [0] 1.93477e+06 
+              RINFO(2) (local estimated flops for the assembly after factorization): 
+                [0]  31592. 
+              RINFO(3) (local estimated flops for the elimination after factorization): 
+                [0]  1.93477e+06 
+              INFO(15) (estimated size of (in MB) MUMPS internal data for running numerical factorization): 
+              [0] 1
+              INFO(16) (size of (in MB) MUMPS internal data used during numerical factorization): 
+                [0] 1
+              INFO(23) (num of pivots eliminated on this processor after factorization): 
+                [0] 794
+              RINFOG(1) (global estimated flops for the elimination after analysis): 1.93477e+06 
+              RINFOG(2) (global estimated flops for the assembly after factorization): 31592. 
+              RINFOG(3) (global estimated flops for the elimination after factorization): 1.93477e+06 
+              (RINFOG(12) RINFOG(13))*2^INFOG(34) (determinant): (0.,0.)*(2^0)
+              INFOG(3) (estimated real workspace for factors on all processors after analysis): 35302
+              INFOG(4) (estimated integer workspace for factors on all processors after analysis): 12536
+              INFOG(5) (estimated maximum front size in the complete tree): 100
+              INFOG(6) (number of nodes in the complete tree): 441
+              INFOG(7) (ordering option effectively used after analysis): 2
+              INFOG(8) (structural symmetry in percent of the permuted matrix after analysis): 100
+              INFOG(9) (total real/complex workspace to store the matrix factors after factorization): 35302
+              INFOG(10) (total integer space store the matrix factors after factorization): 12536
+              INFOG(11) (order of largest frontal matrix after factorization): 100
+              INFOG(12) (number of off-diagonal pivots): 0
+              INFOG(13) (number of delayed pivots after factorization): 0
+              INFOG(14) (number of memory compress after factorization): 0
+              INFOG(15) (number of steps of iterative refinement after solution): 0
+              INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 1
+              INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 1
+              INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 1
+              INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 1
+              INFOG(20) (estimated number of entries in the factors): 35302
+              INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 1
+              INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 1
+              INFOG(23) (after analysis: value of ICNTL(6) effectively used): 0
+              INFOG(24) (after analysis: value of ICNTL(12) effectively used): 1
+              INFOG(25) (after factorization: number of pivots modified by static pivoting): 0
+              INFOG(28) (after factorization: number of null pivots encountered): 0
+              INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): 35302
+              INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 0, 0
+              INFOG(32) (after analysis: type of analysis done): 1
+              INFOG(33) (value used for ICNTL(8)): 7
+              INFOG(34) (exponent of the determinant if determinant is requested): 0
+              INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): 35302
+              INFOG(36) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - value on the most memory consuming processor): 0
+              INFOG(37) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - sum over all processors): 0
+              INFOG(38) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - value on the most memory consuming processor): 0
+              INFOG(39) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - sum over all processors): 0
+  linear system matrix = precond matrix:
+  Mat Object: (o_slin) 1 MPI processes
+    type: seqaij
+    rows=794, cols=794
+    total: nonzeros=10384, allocated nonzeros=10384
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node routines
+Vous avez ajouté le champ erreurUs à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ uAna à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ u à l'exportation ProbEFGlobal.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export ProbEFGlobal
+Vous avez ajouté le champ UnMoinsHeaviside à l'exportation MSE.
+Vous avez ajouté le champ Heaviside à l'exportation MSE.
+Vous avez ajouté le champ champ_k à l'exportation MSE.
+Vous avez ajouté le champ erreurGamma à l'exportation MSE.
+Vous avez ajouté le champ erreurm à l'exportation MSE.
+Vous avez ajouté le champ erreurp à l'exportation MSE.
+Vous avez ajouté le champ uAna à l'exportation MSE.
+Vous avez ajouté le champ u_partie_enrichie à l'exportation MSE.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export MSE
+Vous avez ajouté le champ SNH1_Omega à l'exportation Norme_L2_Omega.
+Vous avez ajouté le champ NL2_Omega à l'exportation Norme_L2_Omega.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationGIREF pour l'export Norme_L2_Omega
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export Norme_L2_Omega
+Info      :  On a exécuté 11 actions.
+Nb. de points: 9
+Valeur de h: 0\.125
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
+Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
+Attention :  On ne peut exporter des valeurs aux PPI avec un maillage 3D, la classe qui crée les maillages aux points d'intégration ne fonctionne pas pour les tétras ni les prismes triangulaires. Il faut faire évoluer ConstructeurMaillageAPartirSchemaIntg.
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_plus [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_moins [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vs [champgeo, u_xfem_plus, u, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhp [champgeo, u, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vs [champgeo, u_xfem_moins, u, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhm [champgeo, u, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhp [champgeo,F,u_xfem_plus,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_plus [champgeo,F,u,schema_intg, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhm [champgeo,F,u_xfem_moins,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_moins [champgeo,F,u,schema_intg, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk1gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk2gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhmgn [champgeo, gn, u_xfem_moins, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhpgn [champgeo, gn, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, Gamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, MoinsGamma, schema_intg, defaut::EntiteGamma]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus] 
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]  
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm2 [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp [champgeo, u, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp2 [champgeo, u, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
+Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
+KSP Object: (o_slin) 1 MPI processes
+  type: preonly
+  maximum iterations=10000, initial guess is zero
+  tolerances:  relative=1e-05, absolute=1e-50, divergence=10000.
+  left preconditioning
+  using NONE norm type for convergence test
+PC Object: (o_slin) 1 MPI processes
+  type: lu
+    out-of-place factorization
+    tolerance for zero pivot 2.22045e-14
+    matrix ordering: external
+    factor fill ratio given 0., needed 0.
+      Factored matrix follows:
+        Mat Object: 1 MPI processes
+          type: mumps
+          rows=5168, cols=5168
+          package used to perform factorization: mumps
+          total: nonzeros=927502, allocated nonzeros=927502
+            MUMPS run parameters:
+              SYM (matrix type):                   0
+              PAR (host participation):            1
+              ICNTL(1) (output for error):         6
+              ICNTL(2) (output of diagnostic msg): 0
+              ICNTL(3) (output for global info):   0
+              ICNTL(4) (level of printing):        0
+              ICNTL(5) (input mat struct):         0
+              ICNTL(6) (matrix prescaling):        7
+              ICNTL(7) (sequential matrix ordering):7
+              ICNTL(8) (scaling strategy):        77
+              ICNTL(10) (max num of refinements):  0
+              ICNTL(11) (error analysis):          0
+              ICNTL(12) (efficiency control):                         1
+              ICNTL(13) (sequential factorization of the root node):  0
+              ICNTL(14) (percentage of estimated workspace increase): 20
+              ICNTL(18) (input mat struct):                           0
+              ICNTL(19) (Schur complement info):                      0
+              ICNTL(20) (RHS sparse pattern):                         0
+              ICNTL(21) (solution struct):                            0
+              ICNTL(22) (in-core/out-of-core facility):               0
+              ICNTL(23) (max size of memory can be allocated locally):0
+              ICNTL(24) (detection of null pivot rows):               0
+              ICNTL(25) (computation of a null space basis):          0
+              ICNTL(26) (Schur options for RHS or solution):          0
+              ICNTL(27) (blocking size for multiple RHS):             -32
+              ICNTL(28) (use parallel or sequential ordering):        1
+              ICNTL(29) (parallel ordering):                          0
+              ICNTL(30) (user-specified set of entries in inv(A)):    0
+              ICNTL(31) (factors is discarded in the solve phase):    0
+              ICNTL(33) (compute determinant):                        0
+              ICNTL(35) (activate BLR based factorization):           0
+              ICNTL(36) (choice of BLR factorization variant):        0
+              ICNTL(38) (estimated compression rate of LU factors):   333
+              CNTL(1) (relative pivoting threshold):      0.01 
+              CNTL(2) (stopping criterion of refinement): 1.49012e-08 
+              CNTL(3) (absolute pivoting threshold):      0. 
+              CNTL(4) (value of static pivoting):         -1. 
+              CNTL(5) (fixation for null pivots):         0. 
+              CNTL(7) (dropping parameter for BLR):       0. 
+              RINFO(1) (local estimated flops for the elimination after analysis): 
+                [0] 1.86386e+08 
+              RINFO(2) (local estimated flops for the assembly after factorization): 
+                [0]  1.17472e+06 
+              RINFO(3) (local estimated flops for the elimination after factorization): 
+                [0]  1.86386e+08 
+              INFO(15) (estimated size of (in MB) MUMPS internal data for running numerical factorization): 
+              [0] 12
+              INFO(16) (size of (in MB) MUMPS internal data used during numerical factorization): 
+                [0] 12
+              INFO(23) (num of pivots eliminated on this processor after factorization): 
+                [0] 5168
+              RINFOG(1) (global estimated flops for the elimination after analysis): 1.86386e+08 
+              RINFOG(2) (global estimated flops for the assembly after factorization): 1.17472e+06 
+              RINFOG(3) (global estimated flops for the elimination after factorization): 1.86386e+08 
+              (RINFOG(12) RINFOG(13))*2^INFOG(34) (determinant): (0.,0.)*(2^0)
+              INFOG(3) (estimated real workspace for factors on all processors after analysis): 927502
+              INFOG(4) (estimated integer workspace for factors on all processors after analysis): 72862
+              INFOG(5) (estimated maximum front size in the complete tree): 501
+              INFOG(6) (number of nodes in the complete tree): 1810
+              INFOG(7) (ordering option effectively used after analysis): 5
+              INFOG(8) (structural symmetry in percent of the permuted matrix after analysis): 100
+              INFOG(9) (total real/complex workspace to store the matrix factors after factorization): 927502
+              INFOG(10) (total integer space store the matrix factors after factorization): 72862
+              INFOG(11) (order of largest frontal matrix after factorization): 501
+              INFOG(12) (number of off-diagonal pivots): 0
+              INFOG(13) (number of delayed pivots after factorization): 0
+              INFOG(14) (number of memory compress after factorization): 0
+              INFOG(15) (number of steps of iterative refinement after solution): 0
+              INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 12
+              INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 12
+              INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 12
+              INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 12
+              INFOG(20) (estimated number of entries in the factors): 927502
+              INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 10
+              INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 10
+              INFOG(23) (after analysis: value of ICNTL(6) effectively used): 0
+              INFOG(24) (after analysis: value of ICNTL(12) effectively used): 1
+              INFOG(25) (after factorization: number of pivots modified by static pivoting): 0
+              INFOG(28) (after factorization: number of null pivots encountered): 0
+              INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): 927502
+              INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 11, 11
+              INFOG(32) (after analysis: type of analysis done): 1
+              INFOG(33) (value used for ICNTL(8)): 7
+              INFOG(34) (exponent of the determinant if determinant is requested): 0
+              INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): 927502
+              INFOG(36) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - value on the most memory consuming processor): 0
+              INFOG(37) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - sum over all processors): 0
+              INFOG(38) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - value on the most memory consuming processor): 0
+              INFOG(39) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - sum over all processors): 0
+  linear system matrix = precond matrix:
+  Mat Object: (o_slin) 1 MPI processes
+    type: seqaij
+    rows=5168, cols=5168
+    total: nonzeros=97210, allocated nonzeros=97210
+    total number of mallocs used during MatSetValues calls=0
+      not using I-node routines
+Vous avez ajouté le champ erreurUs à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ uAna à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ u à l'exportation ProbEFGlobal.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export ProbEFGlobal
+Vous avez ajouté le champ UnMoinsHeaviside à l'exportation MSE.
+Vous avez ajouté le champ Heaviside à l'exportation MSE.
+Vous avez ajouté le champ champ_k à l'exportation MSE.
+Vous avez ajouté le champ erreurGamma à l'exportation MSE.
+Vous avez ajouté le champ erreurm à l'exportation MSE.
+Vous avez ajouté le champ erreurp à l'exportation MSE.
+Vous avez ajouté le champ uAna à l'exportation MSE.
+Vous avez ajouté le champ u_partie_enrichie à l'exportation MSE.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export MSE
+Vous avez ajouté le champ SNH1_Omega à l'exportation Norme_L2_Omega.
+Vous avez ajouté le champ NL2_Omega à l'exportation Norme_L2_Omega.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationGIREF pour l'export Norme_L2_Omega
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export Norme_L2_Omega
+Info      :  On a exécuté 11 actions.
 Nb. de points: 17
 Valeur de h: 0\.0625
 Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
@@ -45,7 +394,6 @@ Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfront
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-** PETSc DEPRECATION WARNING ** : the option -pc_factor_mat_solver_package is deprecated as of version 3.9 and will be removed in a future release. Please use the option -pc_factor_mat_solver_type instead. (Silence this warning with -options_suppress_deprecated_warnings)
 KSP Object: (o_slin) 1 MPI processes
   type: preonly
   maximum iterations=10000, initial guess is zero
@@ -56,20 +404,109 @@ PC Object: (o_slin) 1 MPI processes
   type: lu
     out-of-place factorization
     tolerance for zero pivot 2.22045e-14
-    matrix ordering: nd
-    factor fill ratio given 5., needed 23.4617
+    matrix ordering: external
+    factor fill ratio given 0., needed 0.
       Factored matrix follows:
         Mat Object: 1 MPI processes
-          type: seqaij
-          rows=40985, cols=40985
-          package used to perform factorization: petsc
-          total: nonzeros=26405101, allocated nonzeros=26405101
-            not using I-node routines
+          type: mumps
+          rows=36993, cols=36993
+          package used to perform factorization: mumps
+          total: nonzeros=20706123, allocated nonzeros=20706123
+            MUMPS run parameters:
+              SYM (matrix type):                   0
+              PAR (host participation):            1
+              ICNTL(1) (output for error):         6
+              ICNTL(2) (output of diagnostic msg): 0
+              ICNTL(3) (output for global info):   0
+              ICNTL(4) (level of printing):        0
+              ICNTL(5) (input mat struct):         0
+              ICNTL(6) (matrix prescaling):        7
+              ICNTL(7) (sequential matrix ordering):7
+              ICNTL(8) (scaling strategy):        77
+              ICNTL(10) (max num of refinements):  0
+              ICNTL(11) (error analysis):          0
+              ICNTL(12) (efficiency control):                         1
+              ICNTL(13) (sequential factorization of the root node):  0
+              ICNTL(14) (percentage of estimated workspace increase): 20
+              ICNTL(18) (input mat struct):                           0
+              ICNTL(19) (Schur complement info):                      0
+              ICNTL(20) (RHS sparse pattern):                         0
+              ICNTL(21) (solution struct):                            0
+              ICNTL(22) (in-core/out-of-core facility):               0
+              ICNTL(23) (max size of memory can be allocated locally):0
+              ICNTL(24) (detection of null pivot rows):               0
+              ICNTL(25) (computation of a null space basis):          0
+              ICNTL(26) (Schur options for RHS or solution):          0
+              ICNTL(27) (blocking size for multiple RHS):             -32
+              ICNTL(28) (use parallel or sequential ordering):        1
+              ICNTL(29) (parallel ordering):                          0
+              ICNTL(30) (user-specified set of entries in inv(A)):    0
+              ICNTL(31) (factors is discarded in the solve phase):    0
+              ICNTL(33) (compute determinant):                        0
+              ICNTL(35) (activate BLR based factorization):           0
+              ICNTL(36) (choice of BLR factorization variant):        0
+              ICNTL(38) (estimated compression rate of LU factors):   333
+              CNTL(1) (relative pivoting threshold):      0.01 
+              CNTL(2) (stopping criterion of refinement): 1.49012e-08 
+              CNTL(3) (absolute pivoting threshold):      0. 
+              CNTL(4) (value of static pivoting):         -1. 
+              CNTL(5) (fixation for null pivots):         0. 
+              CNTL(7) (dropping parameter for BLR):       0. 
+              RINFO(1) (local estimated flops for the elimination after analysis): 
+                [0] 1.65956e+10 
+              RINFO(2) (local estimated flops for the assembly after factorization): 
+                [0]  3.34497e+07 
+              RINFO(3) (local estimated flops for the elimination after factorization): 
+                [0]  1.65956e+10 
+              INFO(15) (estimated size of (in MB) MUMPS internal data for running numerical factorization): 
+              [0] 228
+              INFO(16) (size of (in MB) MUMPS internal data used during numerical factorization): 
+                [0] 228
+              INFO(23) (num of pivots eliminated on this processor after factorization): 
+                [0] 36993
+              RINFOG(1) (global estimated flops for the elimination after analysis): 1.65956e+10 
+              RINFOG(2) (global estimated flops for the assembly after factorization): 3.34497e+07 
+              RINFOG(3) (global estimated flops for the elimination after factorization): 1.65956e+10 
+              (RINFOG(12) RINFOG(13))*2^INFOG(34) (determinant): (0.,0.)*(2^0)
+              INFOG(3) (estimated real workspace for factors on all processors after analysis): 20706123
+              INFOG(4) (estimated integer workspace for factors on all processors after analysis): 506378
+              INFOG(5) (estimated maximum front size in the complete tree): 2123
+              INFOG(6) (number of nodes in the complete tree): 7793
+              INFOG(7) (ordering option effectively used after analysis): 5
+              INFOG(8) (structural symmetry in percent of the permuted matrix after analysis): 100
+              INFOG(9) (total real/complex workspace to store the matrix factors after factorization): 20706123
+              INFOG(10) (total integer space store the matrix factors after factorization): 506378
+              INFOG(11) (order of largest frontal matrix after factorization): 2123
+              INFOG(12) (number of off-diagonal pivots): 13
+              INFOG(13) (number of delayed pivots after factorization): 0
+              INFOG(14) (number of memory compress after factorization): 0
+              INFOG(15) (number of steps of iterative refinement after solution): 0
+              INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 228
+              INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 228
+              INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 228
+              INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 228
+              INFOG(20) (estimated number of entries in the factors): 20706123
+              INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 192
+              INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 192
+              INFOG(23) (after analysis: value of ICNTL(6) effectively used): 0
+              INFOG(24) (after analysis: value of ICNTL(12) effectively used): 1
+              INFOG(25) (after factorization: number of pivots modified by static pivoting): 0
+              INFOG(28) (after factorization: number of null pivots encountered): 0
+              INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): 20706123
+              INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 223, 223
+              INFOG(32) (after analysis: type of analysis done): 1
+              INFOG(33) (value used for ICNTL(8)): 7
+              INFOG(34) (exponent of the determinant if determinant is requested): 0
+              INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): 20706123
+              INFOG(36) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - value on the most memory consuming processor): 0
+              INFOG(37) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - sum over all processors): 0
+              INFOG(38) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - value on the most memory consuming processor): 0
+              INFOG(39) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - sum over all processors): 0
   linear system matrix = precond matrix:
   Mat Object: (o_slin) 1 MPI processes
     type: seqaij
-    rows=40985, cols=40985
-    total: nonzeros=1125455, allocated nonzeros=1125455
+    rows=36993, cols=36993
+    total: nonzeros=854009, allocated nonzeros=854009
     total number of mallocs used during MatSetValues calls=0
       not using I-node routines
 Vous avez ajouté le champ erreurUs à l'exportation ProbEFGlobal.
@@ -89,9 +526,9 @@ Vous avez ajouté le champ SNH1_Omega à l'exportation Norme_L2_Omega.
 Vous avez ajouté le champ NL2_Omega à l'exportation Norme_L2_Omega.
 Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationGIREF pour l'export Norme_L2_Omega
 Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export Norme_L2_Omega
-Info      :  On a exécuté 10 actions.
-Nb. de points: 21
-Valeur de h: 0\.05
+Info      :  On a exécuté 11 actions.
+Nb. de points: 33
+Valeur de h: 0\.03125
 Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
 Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
 Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
@@ -132,7 +569,6 @@ Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfront
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-** PETSc DEPRECATION WARNING ** : the option -pc_factor_mat_solver_package is deprecated as of version 3.9 and will be removed in a future release. Please use the option -pc_factor_mat_solver_type instead. (Silence this warning with -options_suppress_deprecated_warnings)
 KSP Object: (o_slin) 1 MPI processes
   type: preonly
   maximum iterations=10000, initial guess is zero
@@ -143,20 +579,109 @@ PC Object: (o_slin) 1 MPI processes
   type: lu
     out-of-place factorization
     tolerance for zero pivot 2.22045e-14
-    matrix ordering: nd
-    factor fill ratio given 5., needed 32.2374
+    matrix ordering: external
+    factor fill ratio given 0., needed 0.
       Factored matrix follows:
         Mat Object: 1 MPI processes
-          type: seqaij
-          rows=76784, cols=76784
-          package used to perform factorization: petsc
-          total: nonzeros=68422664, allocated nonzeros=68422664
-            not using I-node routines
+          type: mumps
+          rows=278339, cols=278339
+          package used to perform factorization: mumps
+          total: nonzeros=388644379, allocated nonzeros=388644379
+            MUMPS run parameters:
+              SYM (matrix type):                   0
+              PAR (host participation):            1
+              ICNTL(1) (output for error):         6
+              ICNTL(2) (output of diagnostic msg): 0
+              ICNTL(3) (output for global info):   0
+              ICNTL(4) (level of printing):        0
+              ICNTL(5) (input mat struct):         0
+              ICNTL(6) (matrix prescaling):        7
+              ICNTL(7) (sequential matrix ordering):7
+              ICNTL(8) (scaling strategy):        77
+              ICNTL(10) (max num of refinements):  0
+              ICNTL(11) (error analysis):          0
+              ICNTL(12) (efficiency control):                         1
+              ICNTL(13) (sequential factorization of the root node):  0
+              ICNTL(14) (percentage of estimated workspace increase): 20
+              ICNTL(18) (input mat struct):                           0
+              ICNTL(19) (Schur complement info):                      0
+              ICNTL(20) (RHS sparse pattern):                         0
+              ICNTL(21) (solution struct):                            0
+              ICNTL(22) (in-core/out-of-core facility):               0
+              ICNTL(23) (max size of memory can be allocated locally):0
+              ICNTL(24) (detection of null pivot rows):               0
+              ICNTL(25) (computation of a null space basis):          0
+              ICNTL(26) (Schur options for RHS or solution):          0
+              ICNTL(27) (blocking size for multiple RHS):             -32
+              ICNTL(28) (use parallel or sequential ordering):        1
+              ICNTL(29) (parallel ordering):                          0
+              ICNTL(30) (user-specified set of entries in inv(A)):    0
+              ICNTL(31) (factors is discarded in the solve phase):    0
+              ICNTL(33) (compute determinant):                        0
+              ICNTL(35) (activate BLR based factorization):           0
+              ICNTL(36) (choice of BLR factorization variant):        0
+              ICNTL(38) (estimated compression rate of LU factors):   333
+              CNTL(1) (relative pivoting threshold):      0.01 
+              CNTL(2) (stopping criterion of refinement): 1.49012e-08 
+              CNTL(3) (absolute pivoting threshold):      0. 
+              CNTL(4) (value of static pivoting):         -1. 
+              CNTL(5) (fixation for null pivots):         0. 
+              CNTL(7) (dropping parameter for BLR):       0. 
+              RINFO(1) (local estimated flops for the elimination after analysis): 
+                [0] 1.17143e+12 
+              RINFO(2) (local estimated flops for the assembly after factorization): 
+                [0]  8.43074e+08 
+              RINFO(3) (local estimated flops for the elimination after factorization): 
+                [0]  1.17143e+12 
+              INFO(15) (estimated size of (in MB) MUMPS internal data for running numerical factorization): 
+              [0] 4102
+              INFO(16) (size of (in MB) MUMPS internal data used during numerical factorization): 
+                [0] 4102
+              INFO(23) (num of pivots eliminated on this processor after factorization): 
+                [0] 278339
+              RINFOG(1) (global estimated flops for the elimination after analysis): 1.17143e+12 
+              RINFOG(2) (global estimated flops for the assembly after factorization): 8.43074e+08 
+              RINFOG(3) (global estimated flops for the elimination after factorization): 1.17143e+12 
+              (RINFOG(12) RINFOG(13))*2^INFOG(34) (determinant): (0.,0.)*(2^0)
+              INFOG(3) (estimated real workspace for factors on all processors after analysis): 388644379
+              INFOG(4) (estimated integer workspace for factors on all processors after analysis): 3977660
+              INFOG(5) (estimated maximum front size in the complete tree): 8661
+              INFOG(6) (number of nodes in the complete tree): 36111
+              INFOG(7) (ordering option effectively used after analysis): 5
+              INFOG(8) (structural symmetry in percent of the permuted matrix after analysis): 100
+              INFOG(9) (total real/complex workspace to store the matrix factors after factorization): 388644379
+              INFOG(10) (total integer space store the matrix factors after factorization): 3977660
+              INFOG(11) (order of largest frontal matrix after factorization): 8661
+              INFOG(12) (number of off-diagonal pivots): 5
+              INFOG(13) (number of delayed pivots after factorization): 0
+              INFOG(14) (number of memory compress after factorization): 0
+              INFOG(15) (number of steps of iterative refinement after solution): 0
+              INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 4102
+              INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 4102
+              INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 4102
+              INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 4102
+              INFOG(20) (estimated number of entries in the factors): 388644379
+              INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 3439
+              INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 3439
+              INFOG(23) (after analysis: value of ICNTL(6) effectively used): 0
+              INFOG(24) (after analysis: value of ICNTL(12) effectively used): 1
+              INFOG(25) (after factorization: number of pivots modified by static pivoting): 0
+              INFOG(28) (after factorization: number of null pivots encountered): 0
+              INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): 388644379
+              INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 4063, 4063
+              INFOG(32) (after analysis: type of analysis done): 1
+              INFOG(33) (value used for ICNTL(8)): 7
+              INFOG(34) (exponent of the determinant if determinant is requested): 0
+              INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): 388644379
+              INFOG(36) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - value on the most memory consuming processor): 0
+              INFOG(37) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - sum over all processors): 0
+              INFOG(38) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - value on the most memory consuming processor): 0
+              INFOG(39) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - sum over all processors): 0
   linear system matrix = precond matrix:
   Mat Object: (o_slin) 1 MPI processes
     type: seqaij
-    rows=76784, cols=76784
-    total: nonzeros=2122462, allocated nonzeros=2122462
+    rows=278339, cols=278339
+    total: nonzeros=7129171, allocated nonzeros=7129171
     total number of mallocs used during MatSetValues calls=0
       not using I-node routines
 Vous avez ajouté le champ erreurUs à l'exportation ProbEFGlobal.
@@ -176,9 +701,9 @@ Vous avez ajouté le champ SNH1_Omega à l'exportation Norme_L2_Omega.
 Vous avez ajouté le champ NL2_Omega à l'exportation Norme_L2_Omega.
 Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationGIREF pour l'export Norme_L2_Omega
 Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export Norme_L2_Omega
-Info      :  On a exécuté 10 actions.
-Nb. de points: 46
-Valeur de h: 0\.022222222222222
+Info      :  On a exécuté 11 actions.
+Nb. de points: 49
+Valeur de h: 0\.020833333333333
 Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
 Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
 Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
@@ -219,7 +744,6 @@ Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfront
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
 Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-** PETSc DEPRECATION WARNING ** : the option -pc_factor_mat_solver_package is deprecated as of version 3.9 and will be removed in a future release. Please use the option -pc_factor_mat_solver_type instead. (Silence this warning with -options_suppress_deprecated_warnings)
 KSP Object: (o_slin) 1 MPI processes
   type: preonly
   maximum iterations=10000, initial guess is zero
@@ -230,93 +754,126 @@ PC Object: (o_slin) 1 MPI processes
   type: lu
     out-of-place factorization
     tolerance for zero pivot 2.22045e-14
-    matrix ordering: nd
-    factor fill ratio given 5., needed 77.6638
+    matrix ordering: external
+    factor fill ratio given 0., needed 0.
       Factored matrix follows:
         Mat Object: 1 MPI processes
-          type: seqaij
-          rows=793949, cols=793949
-          package used to perform factorization: petsc
-          total: nonzeros=1738683507, allocated nonzeros=1738683507
-            not using I-node routines
+          type: mumps
+          rows=920855, cols=920855
+          package used to perform factorization: mumps
+          total: nonzeros=-2159, allocated nonzeros=-2159
+            MUMPS run parameters:
+              SYM (matrix type):                   0
+              PAR (host participation):            1
+              ICNTL(1) (output for error):         6
+              ICNTL(2) (output of diagnostic msg): 0
+              ICNTL(3) (output for global info):   0
+              ICNTL(4) (level of printing):        0
+              ICNTL(5) (input mat struct):         0
+              ICNTL(6) (matrix prescaling):        7
+              ICNTL(7) (sequential matrix ordering):7
+              ICNTL(8) (scaling strategy):        77
+              ICNTL(10) (max num of refinements):  0
+              ICNTL(11) (error analysis):          0
+              ICNTL(12) (efficiency control):                         1
+              ICNTL(13) (sequential factorization of the root node):  0
+              ICNTL(14) (percentage of estimated workspace increase): 20
+              ICNTL(18) (input mat struct):                           0
+              ICNTL(19) (Schur complement info):                      0
+              ICNTL(20) (RHS sparse pattern):                         0
+              ICNTL(21) (solution struct):                            0
+              ICNTL(22) (in-core/out-of-core facility):               0
+              ICNTL(23) (max size of memory can be allocated locally):0
+              ICNTL(24) (detection of null pivot rows):               0
+              ICNTL(25) (computation of a null space basis):          0
+              ICNTL(26) (Schur options for RHS or solution):          0
+              ICNTL(27) (blocking size for multiple RHS):             -32
+              ICNTL(28) (use parallel or sequential ordering):        1
+              ICNTL(29) (parallel ordering):                          0
+              ICNTL(30) (user-specified set of entries in inv(A)):    0
+              ICNTL(31) (factors is discarded in the solve phase):    0
+              ICNTL(33) (compute determinant):                        0
+              ICNTL(35) (activate BLR based factorization):           0
+              ICNTL(36) (choice of BLR factorization variant):        0
+              ICNTL(38) (estimated compression rate of LU factors):   333
+              CNTL(1) (relative pivoting threshold):      0.01 
+              CNTL(2) (stopping criterion of refinement): 1.49012e-08 
+              CNTL(3) (absolute pivoting threshold):      0. 
+              CNTL(4) (value of static pivoting):         -1. 
+              CNTL(5) (fixation for null pivots):         0. 
+              CNTL(7) (dropping parameter for BLR):       0. 
+              RINFO(1) (local estimated flops for the elimination after analysis): 
+                [0] 1.48389e+13 
+              RINFO(2) (local estimated flops for the assembly after factorization): 
+                [0]  4.99285e+09 
+              RINFO(3) (local estimated flops for the elimination after factorization): 
+                [0]  1.48389e+13 
+              INFO(15) (estimated size of (in MB) MUMPS internal data for running numerical factorization): 
+              [0] 22909
+              INFO(16) (size of (in MB) MUMPS internal data used during numerical factorization): 
+                [0] 22909
+              INFO(23) (num of pivots eliminated on this processor after factorization): 
+                [0] 920855
+              RINFOG(1) (global estimated flops for the elimination after analysis): 1.48389e+13 
+              RINFOG(2) (global estimated flops for the assembly after factorization): 4.99285e+09 
+              RINFOG(3) (global estimated flops for the elimination after factorization): 1.48389e+13 
+              (RINFOG(12) RINFOG(13))*2^INFOG(34) (determinant): (0.,0.)*(2^0)
+              INFOG(3) (estimated real workspace for factors on all processors after analysis): -2159
+              INFOG(4) (estimated integer workspace for factors on all processors after analysis): 13498920
+              INFOG(5) (estimated maximum front size in the complete tree): 19373
+              INFOG(6) (number of nodes in the complete tree): 92328
+              INFOG(7) (ordering option effectively used after analysis): 5
+              INFOG(8) (structural symmetry in percent of the permuted matrix after analysis): 100
+              INFOG(9) (total real/complex workspace to store the matrix factors after factorization): -2159
+              INFOG(10) (total integer space store the matrix factors after factorization): 13498920
+              INFOG(11) (order of largest frontal matrix after factorization): 19373
+              INFOG(12) (number of off-diagonal pivots): 34
+              INFOG(13) (number of delayed pivots after factorization): 0
+              INFOG(14) (number of memory compress after factorization): 0
+              INFOG(15) (number of steps of iterative refinement after solution): 0
+              INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 22909
+              INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 22909
+              INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 22909
+              INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 22909
+              INFOG(20) (estimated number of entries in the factors): -2159
+              INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 19159
+              INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 19159
+              INFOG(23) (after analysis: value of ICNTL(6) effectively used): 0
+              INFOG(24) (after analysis: value of ICNTL(12) effectively used): 1
+              INFOG(25) (after factorization: number of pivots modified by static pivoting): 0
+              INFOG(28) (after factorization: number of null pivots encountered): 0
+              INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): -2159
+              INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 22767, 22767
+              INFOG(32) (after analysis: type of analysis done): 1
+              INFOG(33) (value used for ICNTL(8)): 7
+              INFOG(34) (exponent of the determinant if determinant is requested): 0
+              INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): -2159
+              INFOG(36) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - value on the most memory consuming processor): 0
+              INFOG(37) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - sum over all processors): 0
+              INFOG(38) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - value on the most memory consuming processor): 0
+              INFOG(39) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - sum over all processors): 0
   linear system matrix = precond matrix:
   Mat Object: (o_slin) 1 MPI processes
     type: seqaij
-    rows=793949, cols=793949
-    total: nonzeros=22387323, allocated nonzeros=22387323
+    rows=920855, cols=920855
+    total: nonzeros=24492351, allocated nonzeros=24492351
     total number of mallocs used during MatSetValues calls=0
       not using I-node routines
-Info      :  On a exécuté 5 actions.
-ERR_SOLVEUR_DIVERGENCE::KSPConvergedReason : -11
-Echec: MEF++ /home/mefpp_mcouliba/xfemisoparametrique/diffusion3d/cas_courbe/Diffusion_XFEM_DiscFaible_InterfaceCourbe3D
-Mon Aug 16 21:40:33 EDT 2021
-Tue Aug 17 16:43:00 EDT 2021
-xfem sphere inc; p2gp1
-DEBUT PROGRAMME
-Binaire MEFPP: GIREF.AppImage MEF++
-Script de maillage: ../maillages/choisit_maillage.sh
-Nb. de points: 65
-Valeur de h: 0\.015625
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_OmegaSansGamma [champgeo, u, u, alpha, schema_intg, defaut::EntiteOmegaSansGamma]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource [champgeo,F,u,schema_intg, defaut::EntiteOmegaSansGamma]
-Info      :  LDCondLimDirichlet::lisDeclaration dirichlet scalaire "bord" "u" "uAna"
-Attention :  On ne peut exporter des valeurs aux PPI avec un maillage 3D, la classe qui crée les maillages aux points d'intégration ne fonctionne pas pour les tétras ni les prismes triangulaires. Il faut faire évoluer ConstructeurMaillageAPartirSchemaIntg.
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_plus [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vs_moins [champgeo, u, u, alpha, schema_intg, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhp_vs [champgeo, u_xfem_plus, u, alpha, schema_intg, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhp [champgeo, u, u_xfem_plus, alpha, schema_intg, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_uhm_vs [champgeo, u_xfem_moins, u, alpha, schema_intg, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tfdiffusion Diff_us_vhm [champgeo, u, u_xfem_moins, alpha, schema_intg, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhp [champgeo,F,u_xfem_plus,schema_intg, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_plus [champgeo,F,u,schema_intg, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_uhm [champgeo,F,u_xfem_moins,schema_intg, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal TFSource_us_moins [champgeo,F,u,schema_intg, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk1gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vsk2gn [champgeo, gn, u, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhmgn [champgeo, gn, u_xfem_moins, schema_intg,defaut::EntiteGamma, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tfsourcefvscal_frontiere TFSource_vhpgn [champgeo, gn, u_xfem_plus, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, Gamma, schema_intg, defaut::EntiteGamma]
-Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, Gamma, schema_intg, defaut::EntiteGamma]
-Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, MoinsGamma, schema_intg, defaut::EntiteGamma]
-Info      :  LDTFGenerique::lisDeclaration tfmassegenscal Masse_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, MoinsGamma, schema_intg, defaut::EntiteGamma]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus] 
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]  
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhm [champgeo, u_xfem_moins, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhm [champgeo, u_xfem_plus, u_xfem_moins, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhm_vhp [champgeo, u_xfem_moins, u_xfem_plus, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Convt_uhp_vhp [champgeo, u_xfem_plus, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhm2 [champgeo, u, u_xfem_moins, normale_levelset, MoinsAlpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp [champgeo, u, u_xfem_plus, normale_levelset, Alpha1Km, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairefrontiere Conv_us_vhp2 [champgeo, u, u_xfem_plus, normale_levelset, Alpha2Kp, schema_intg, false, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhm_vs2 [champgeo, u_xfem_moins, u, normale_levelset, MoinsAlpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs [champgeo, u_xfem_plus, u, normale_levelset, Alpha1Km, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEMoins]
-Info      :  LDTFGenerique::lisDeclaration tftransportconvectifscalairetestfrontiere Conv_uhp_vs2 [champgeo, u_xfem_plus, u, normale_levelset, Alpha2Kp, schema_intg, defaut::EntiteGamma, defaut::EntiteMSEPlus]
-** PETSc DEPRECATION WARNING ** : the option -pc_factor_mat_solver_package is deprecated as of version 3.9 and will be removed in a future release. Please use the option -pc_factor_mat_solver_type instead. (Silence this warning with -options_suppress_deprecated_warnings)
-[0]PETSC ERROR: --------------------- Error Message --------------------------------------------------------------
-[0]PETSC ERROR: Out of memory. This could be due to allocating
-[0]PETSC ERROR: too large an object or bleeding by not properly
-[0]PETSC ERROR: destroying unneeded objects.
-[0]PETSC ERROR: Memory allocated 0 Memory used by process 35606720512
-[0]PETSC ERROR: Try running with -malloc_dump or -malloc_view for info.
-[0]PETSC ERROR: Memory requested 18446744068353304576
-[0]PETSC ERROR: See https://www.mcs.anl.gov/petsc/documentation/faq.html for trouble shooting.
-[0]PETSC ERROR: Petsc Release Version 3.14.1, Nov 03, 2020 
-[0]PETSC ERROR: MEF++ on a  named gandalf by mcouliba Tue Aug 17 16:43:01 2021
-[0]PETSC ERROR: Configure options --prefix=/opt/petsc-3.14.1_opt_openmpi-4.0.5_opt --with-mpi-compilers=1 --with-mpi-dir=/opt/openmpi-4.0.5_opt --with-cxx-dialect=C++11 --with-make-np=12 --with-shared-libraries=1 --with-debugging=no --with-memalign=64 --with-visibility=0 --with-64-bit-indices=0 --download-ml=yes --download-mumps=yes --download-superlu=yes --download-superlu_dist=yes --download-parmetis=yes --download-ptscotch=yes --download-metis=yes --download-suitesparse=yes --download-hypre=yes --with-blaslapack-dir=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64 --with-mkl_pardiso-dir=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl --with-mkl_cpardiso-dir=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl --with-scalapack=1 --with-scalapack-include=/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/include --with-scalapack-lib="-L/opt/intel/compilers_and_libraries_2020.0.166/linux/mkl/lib/intel64 -lmkl_scalapack_lp64 -lmkl_blacs_openmpi_lp64"
-[0]PETSC ERROR: #1 MatLUFactorSymbolic_SeqAIJ() line 369 in /ompi-opt/petsc-3.14.1-opt/src/mat/impls/aij/seq/aijfact.c
-[0]PETSC ERROR: #2 PetscMallocA() line 418 in /ompi-opt/petsc-3.14.1-opt/src/sys/memory/mal.c
-[0]PETSC ERROR: #3 MatLUFactorSymbolic_SeqAIJ() line 369 in /ompi-opt/petsc-3.14.1-opt/src/mat/impls/aij/seq/aijfact.c
-[0]PETSC ERROR: #4 MatLUFactorSymbolic() line 3114 in /ompi-opt/petsc-3.14.1-opt/src/mat/interface/matrix.c
-[0]PETSC ERROR: #5 PCSetUp_LU() line 94 in /ompi-opt/petsc-3.14.1-opt/src/ksp/pc/impls/factor/lu/lu.c
-[0]PETSC ERROR: #6 PCSetUp() line 1009 in /ompi-opt/petsc-3.14.1-opt/src/ksp/pc/interface/precon.c
-[0]PETSC ERROR: #7 KSPSetUp() line 406 in /ompi-opt/petsc-3.14.1-opt/src/ksp/ksp/interface/itfunc.c
-Info      :  On a exécuté 5 actions.
-ERREUR PETSc: no. 55. o_slin KSPSetUp
-Echec: MEF++ /home/mefpp_mcouliba/xfemisoparametrique/diffusion3d/cas_courbe/Diffusion_XFEM_DiscFaible_InterfaceCourbe3D
-Tue Aug 17 17:24:56 EDT 2021
+Vous avez ajouté le champ erreurUs à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ uAna à l'exportation ProbEFGlobal.
+Vous avez ajouté le champ u à l'exportation ProbEFGlobal.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export ProbEFGlobal
+Vous avez ajouté le champ UnMoinsHeaviside à l'exportation MSE.
+Vous avez ajouté le champ Heaviside à l'exportation MSE.
+Vous avez ajouté le champ champ_k à l'exportation MSE.
+Vous avez ajouté le champ erreurGamma à l'exportation MSE.
+Vous avez ajouté le champ erreurm à l'exportation MSE.
+Vous avez ajouté le champ erreurp à l'exportation MSE.
+Vous avez ajouté le champ uAna à l'exportation MSE.
+Vous avez ajouté le champ u_partie_enrichie à l'exportation MSE.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export MSE
+Vous avez ajouté le champ SNH1_Omega à l'exportation Norme_L2_Omega.
+Vous avez ajouté le champ NL2_Omega à l'exportation Norme_L2_Omega.
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationGIREF pour l'export Norme_L2_Omega
+Attention :  Pas d'export possible des champs PPI pour le pilote d'exportation au format PiloteExportationVTK pour l'export Norme_L2_Omega
+Info      :  On a exécuté 11 actions.
