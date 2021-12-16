@@ -29,7 +29,8 @@ scalaire alpha1 1
 scalaire alpha2 2
 
 #On definit l'interface
-scalaire r0 0.33331
+scalaire r0 0.1111
+#scalaire r0 0.33331
 #scalaire r0 0.066666
 #scalaire c0 -0.375
 scalaire x0 0
