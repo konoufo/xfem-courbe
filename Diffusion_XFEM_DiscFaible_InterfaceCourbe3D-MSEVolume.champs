@@ -20,7 +20,8 @@ scallinelem u_xfem_plus_disc  0
 scallinelem u_disc 0
 
 #Definition de fonctions scalaires intervenants dans le calcul
-#scalaire Gamma 4500
+scalaire Gamma0 4e4
+scalaire Gamma f(Gamma0,hMax)=Gamma0/hMax
 scalaire MoinsGamma f(Gamma)=-Gamma
 
 scalaire Alpha1Km f(alpha1,champ_k)=alpha1*champ_k
