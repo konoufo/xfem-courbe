@@ -6,8 +6,8 @@ booleen GIREF_VERBOSE_SOLVEUR false
 problemeef ProbEFGlobal
 
 # Définition du champ de transformation géométrique utilisé pour le calcul:
-champgeolin champgeo
-#champgeoquad champgeo
+#champgeolin champgeo
+champgeoquad champgeo
 #Creation des entites intervenant dans le calcul et définies sur le maillage complet
 
 cree_entite EntiteOmega_Gamma
@@ -23,7 +23,7 @@ vectoriel3d posHMax [0,0,0]
 
 #Creation de champ scalaire intervant dans notre calcul
 scalaire alpha1 1
-scalaire alpha2 2
+scalaire alpha2 5
 
 #On definit l'interface
 scalaire r0 0.14111
@@ -53,21 +53,12 @@ scalaire UnMoinsHeaviside f(Heaviside)=1-Heaviside
 scalquad u 0
 #scallin u 0
 
-#scalaire uAna f(r,r0,levelset,alpha1,alpha2)=if(levelset<=0,r^2/alpha1,(r^2/alpha2-r0^2/alpha2 + r0^2/alpha1))
-scalaire "h" f(alpha1,alpha2,r,r0)=if(r<r0, 1/alpha1,1/alpha2+(1/alpha1-1/alpha2)*exp(r^2-r0^2))
-#scalaire "uAna" f(r,h)=x*h*exp(-r^2)
-scalaire "uAna" f(r,h)=h*exp(-r^2)
-#scalaire uAna f()=x
+scalaire "uAna" f(alpha1,alpha2,r,r0)=if(r<r0, 1/alpha1*r^4,1/alpha2*(r^4-r0^4)+r0^4/alpha1)
 
 # Le champ F: terme source
-#scalaire F f(r)=-2*x*exp(-r^2)*(2*r^2-5)
-scalaire F f(r)=-exp(-r^2)*(4*r^2-6)
-#scalaire F 0
-#scalaire "F" f(r)=-6
+scalaire F f(r)=-20*r^2
 
 # On definit la discontinuite faible imposee (au niveau de la levelset)
-#scalaire Gn f(nx,alpha1,alpha2,r0)=(1-alpha2/alpha1)*exp(-r0^2)*nx
-#scalaire Gn f(nx,alpha1,alpha2)=(alpha1-alpha2)*nx
 scalaire Gn 0
 
 # On definit la discontinuite forte imposee (au niveau de la levelset)
@@ -105,8 +96,6 @@ schemaintg schema_intg ParamSchema
 # Création d'option PETSc qui serviront à définir un solveur (ksp, pc et mat):
 { options_prefixees_petsc o_slin
   ksp_type preonly
-#  pc_factor_mat_solver_type petsc
-#  pc_factor_mat_solver_package petsc
   ksp_view
 }
 
